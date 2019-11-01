@@ -19,7 +19,6 @@ function generateToken(user, secret) {
 // @TODO: Uncomment these lines later when we add auth
 
 // const authMutations = require("./auth");
-// -------------------------------
 
 const mutationResolvers = app => ({
   async signup(
@@ -113,3 +112,4 @@ const mutationResolvers = app => ({
     return newItem;
   }
 });
+module.exports = mutationResolvers;

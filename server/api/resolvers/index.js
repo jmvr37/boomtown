@@ -22,9 +22,9 @@ const { DateScalar } = require("../custom-types");
 
 module.exports = app => {
   return {
-    // Date: DateScalar,
-    Query: queryResolvers(app)
-    // Mutation: mutationResolvers(app)
-    // ...relationResolvers
+    Date: DateScalar,
+    Query: queryResolvers(app),
+    Mutation: mutationResolvers(app),
+    ...relationResolvers
   };
 };
