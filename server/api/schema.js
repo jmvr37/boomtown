@@ -40,11 +40,8 @@ module.exports = gql`
   }
 
   type AuthPayload {
-    id: ID!
-    filename: String!
-    mimetype: String!
-    encoding: String!
-    itemid: ID!
+    toke: String
+    user: User
   }
 
   input AssignedTag {

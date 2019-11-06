@@ -26,7 +26,7 @@ const relationResolvers = {
     async itemowner(parent, args, { pgResource }, info) {
       try {
         console.log(pgResource);
-        const itemOwner = await pgResource.getUserById(itemowner);
+        const itemOwner = await pgResource.getUserById(parent.ownerId);
 
         return itemOwner;
       } catch (e) {

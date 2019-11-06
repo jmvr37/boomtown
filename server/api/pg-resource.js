@@ -88,61 +88,58 @@ module.exports = postgres => {
       const tags = await postgres.query(tagsQuery);
       return tags.rows;
     },
+
     async saveNewItem({ item, user }) {
+      console.log("boom");
       return new Promise((resolve, reject) => {
         postgres.connect((err, client, done) => {
           try {
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
               const itemQuery = {
-                text: `INSERT INTO items (title, description, ownerId) VALUES ($1, $2, $3) RETURNING *`,
-                values: [title, description, user]
+                text: `INSERT INTO items (title, description, "ownerId") VALUES ($1, $2, $3) RETURNING *`,
+                values: [title, description, user.id]
               };
-              // Generate new Item query
-              // @TODO
-              // -------------------------------
-              const newItem = await postgres.query(itemQuery);
 
-              // Insert new Item
-              // @TODO
-              // -------------------------------
+              const newItem = await client.query(itemQuery);
+
+              const newItemId = newItem.rows[0].id;
+              console.log("hi", newItemId);
 
               // Generate tag relationships query (use the'tagsQueryString' helper function provided)
               // @TODO
               // -------------------------------
+
               const tagsQuery = {
-                text: `INSERT INTO items (title, description,imageUrl,ownerId,borrowedId) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
-                values: [
-                  item.title,
-                  item.image,
-                  item.description,
-                  item.owner[0].id,
-                  borrowed
-                ]
+                text: `INSERT INTO itemtags ("tagId","itemId" ) VALUES ${tagsQueryString(
+                  tags,
+                  newItemId,
+                  ""
+                )}`,
+                values: tags.map(tag => tag.id)
               };
-              // Insert tags
-              // @TODO
-              // -------------------------------
-              const insertTags = {};
-              // Commit the entire transaction!
+
+              console.log(tags.map(tag => tag.id));
+              console.log(tags);
+
+              await client.query(tagsQuery);
+
               client.query("COMMIT", err => {
                 if (err) {
                   throw err;
                 }
-                // release the client back to the pool
+
                 done();
-                // Uncomment this resolve statement when you're ready!
+
                 resolve(newItem.rows[0]);
-                // -------------------------------
               });
             });
           } catch (e) {
-            // Something went wrong
             client.query("ROLLBACK", err => {
               if (err) {
                 throw err;
               }
-              // release the client back to the pool
+
               done();
             });
             switch (true) {

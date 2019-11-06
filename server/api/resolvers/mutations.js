@@ -29,10 +29,10 @@ const mutationResolvers = app => ({
     { pgResource, req }
   ) {
     try {
-      const hashedPassword = await bcrypt.hash(args.user.password, 10);
-      const user = await context.pgResource.createUser({
-        fullname: args.user.fullname,
-        email: args.user.email,
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await pgResource.createUser({
+        fullname,
+        email,
         password: hashedPassword
       });
 
@@ -61,7 +61,7 @@ const mutationResolvers = app => ({
     { pgResource, req }
   ) {
     try {
-      const user = await context.pgResource.getUserAndPasswordForVerification(
+      const user = await pgResource.getUserAndPasswordForVerification(
         args.user.email
       );
       if (!user) throw "User was not found.";
@@ -104,7 +104,8 @@ const mutationResolvers = app => ({
      *  Again, you may look at the user resolver for an example of what
      *  destructuring should look like.
      */
-    const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+    //const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+    const user = { id: 1 };
     const newItem = await context.pgResource.saveNewItem({
       item: args.item,
       user

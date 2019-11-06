@@ -49,6 +49,7 @@ module.exports = app => {
   app.set("PG_USER", process.env.PG_USER || "jose");
   app.set("PG_PASSWORD", process.env.PG_PASSWORD || "boomtown");
   app.set("PG_DB", process.env.PG_DB || "boomtown");
+  app.set("JWT_COOKIE_NAME", "bt-token");
 
   app.use(cookieParser());
 
