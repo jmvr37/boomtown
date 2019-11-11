@@ -6,15 +6,12 @@ class AuthDirective extends SchemaDirectiveVisitor {
   visitObject(type) {
     this.ensureFieldsWrapped(type);
   }
-  // Visitor methods for nested types like fields and arguments
-  // also receive a details object that provides information about
-  // the parent and grandparent types.
+
   visitFieldDefinition(field, details) {
     this.ensureFieldsWrapped(details.objectType);
   }
 
   ensureFieldsWrapped(objectType) {
-    // Mark the GraphQLObjectType object to avoid re-wrapping:
     if (objectType._authFieldsWrapped) return;
     objectType._authFieldsWrapped = true;
 
@@ -24,11 +21,11 @@ class AuthDirective extends SchemaDirectiveVisitor {
       const field = fields[fieldName];
       const { resolve = defaultFieldResolver } = field;
       field.resolve = async function(parent, args, context, info) {
-        const { token, require } = context;
+        const { token, req } = context;
         if (
           !token &&
-          require.body.operationName !== "login" &&
-          require.body.operationName !== "signup"
+          req.body.operationName !== "login" &&
+          req.body.operationName !== "signup"
         ) {
           throw new ForbiddenError("Not Authorized");
         }

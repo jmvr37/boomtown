@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import Profile from './Profile';
+import React, { Component } from "react";
+import Profile from "./Profile";
 // import FullScreenLoader from '../../components/FullScreenLoader';
 // import { Query } from 'react-apollo';
 // import {  } from '../../apollo/queries';
 
 class ProfileContainer extends Component {
   render() {
-    return <Profile />;
+    return <Profile id={this.props.id} />; //not sure about this code
   }
 }
 

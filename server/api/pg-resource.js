@@ -8,13 +8,14 @@ function tagsQueryString(tags, itemid, result) {
 module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
+      console.log("in here");
       const newUserInsert = {
-        text: `INSERT INTO users (fullname, email, password) VALUES 
-        ($1, $2, $3) RETURN *, values: [fullname, email, password]
-        values: [fullname, email, password]`
+        text: `INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3) RETURNING *`,
+        values: [fullname, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
+        console.log(user);
         return user.rows[0];
       } catch (e) {
         switch (true) {
@@ -29,7 +30,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: "SELECT * FROM users WHERE email = $1", // @TODO: Authentication - Server
+        text: "SELECT * FROM users WHERE email = $1",
         values: [email]
       };
       try {
@@ -43,7 +44,7 @@ module.exports = postgres => {
 
     async getUserById(id) {
       const findUserQuery = {
-        text: "SELECT * FROM users WHERE id = $1", // @TODO: Basic queries
+        text: "SELECT * FROM users WHERE id = $1",
         values: id ? [id] : []
       };
       console.log("here2");
@@ -51,7 +52,6 @@ module.exports = postgres => {
       console.log("here3");
       console.log(user);
       return user.rows[0];
-      // -------------------------------
     },
     async getItems(idToOmit) {
       const items = await postgres.query({
@@ -105,10 +105,6 @@ module.exports = postgres => {
 
               const newItemId = newItem.rows[0].id;
               console.log("hi", newItemId);
-
-              // Generate tag relationships query (use the'tagsQueryString' helper function provided)
-              // @TODO
-              // -------------------------------
 
               const tagsQuery = {
                 text: `INSERT INTO itemtags ("tagId","itemId" ) VALUES ${tagsQueryString(

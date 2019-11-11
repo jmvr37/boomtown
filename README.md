@@ -1,5 +1,15 @@
 # Boomtown 🏙
 
+back-end server to support a sharing interface, supporting login and create new users, using database.
+
+## Technologies Used
+
+- JavaScript
+- Postico & Postgress for DB
+- Node js
+- GraphQL playground to test queries
+- Apollo server
+
 ## Server
 
 Commands must be run from the `server` directory:

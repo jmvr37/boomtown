@@ -1,8 +1,8 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import styles from "./styles";
 
-const Profile = ({ classes }) => {
+const Profile = ({ props }) => {
   return (
     <div>
       <p>
