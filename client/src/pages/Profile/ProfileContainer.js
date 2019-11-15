@@ -6,7 +6,7 @@ import Profile from "./Profile";
 
 class ProfileContainer extends Component {
   render() {
-    return <Profile id={this.props.id} />; //not sure about this code
+    return <Profile id={this.props.match.params.id} />; //not sure about this code
   }
 }
 
