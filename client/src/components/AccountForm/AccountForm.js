@@ -7,37 +7,43 @@ import InputLabel from "@material-ui/core/InputLabel";
 import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
 import { Form, Field } from "react-final-form";
-// import {
-//   LOGIN_MUTATION,
-//   SIGNUP_MUTATION,
-//   VIEWER_QUERY
-// } from "../../apollo/queries";
+import {
+  LOGIN_MUTATION,
+  SIGNUP_MUTATION,
+  VIEWER_QUERY
+} from "../../apollo/queries";
 // import { graphql, compose } from "react-apollo";
 import validate from "./helpers/validation";
-
+// import PropTypes from "prop-types";
 import styles from "./styles";
-import { TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core/";
 
 // const required = value => (value ? undefined : "Required");
 
-const onFormSubmitFunc = values => {
-  console.log(values);
-};
+// const onFormSubmitFunc = values => {
+//   console.log(values);
+// };
 
 class AccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formToggle: true
+      formToggle: true,
+      error: null
     };
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, loginMutation, signupMutation } = this.props;
 
     return (
       <Form
-        onSubmit={onFormSubmitFunc}
+        onSubmit={values => {
+          const user = { variables: { user: values } };
+          this.state.formToggle
+            ? loginMutation(user).catch(error => this.setState({ error }))
+            : signupMutation(user).catch(error => this.setState({ error }));
+        }}
         validate={validate}
         render={({ handleSubmit, form, pristine, validate }) => (
           <form onSubmit={handleSubmit} className={classes.accountForm}>
@@ -131,6 +137,7 @@ class AccountForm extends Component {
                       // @TODO: Reset the form on submit
                       form.reset();
                       this.setState({
+                        error: null,
                         formToggle: !this.state.formToggle
                       });
                     }}
@@ -144,6 +151,12 @@ class AccountForm extends Component {
             </FormControl>
             <Typography className={classes.errorMessage}>
               {/* @TODO: Display sign-up and login errors */}
+              {(this.state.error &&
+                this.state.formToggle &&
+                this.state.error.graphQLErrors[0].message) ||
+                (this.state.error &&
+                  !this.state.formToggle &&
+                  this.state.error.graphQLErrors[0].message)}
             </Typography>
           </form>
         )}
@@ -152,6 +165,23 @@ class AccountForm extends Component {
   }
 }
 
-// @TODO: Use compose to add the login and signup mutations to this components props.
-// @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
+const refetchQueries = [
+  {
+    query: VIEWER_QUERY
+  }
+];
+
+// export default compose(
+//   graphql(SIGNUP_MUTATION, {
+//     options: {
+//       refetchQueries
+//     },
+//     name: "signupMutation"
+//   }),
+//   graphql(LOGIN_MUTATION, {
+//     options: {
+//       refetchQueries
+//     },
+//     name: "loginMutation"
+//   }),
 export default withStyles(styles)(AccountForm);
