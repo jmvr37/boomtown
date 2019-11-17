@@ -34,6 +34,30 @@ class ShareForm extends Component {
               <Field
                 name="ItemName"
                 component="Input"
+                type="file"
+                placeholder="Name your Item"
+                validate={validate}
+              >
+                {({ props, meta }) => (
+                  <TextField
+                    id="ItemName"
+                    type="file"
+                    inputProps={{
+                      autoComplete: "off"
+                    }}
+                    value={props.input.value}
+                  />
+                )}
+                ;
+              </Field>
+            </FormControl>
+
+            <FormControl fullWidth className={classes.formControl}>
+              <InputLabel htmlFor="ItemName"> </InputLabel>
+
+              <Field
+                name="ItemName"
+                component="Input"
                 type="text"
                 placeholder="Name your Item"
                 validate={validate}
@@ -65,7 +89,8 @@ class ShareForm extends Component {
                 {props => (
                   <Input
                     id="Describe"
-                    type="password"
+                    className={classes.TextField}
+                    multiline
                     inputProps={{
                       autoComplete: "off"
                     }}
@@ -81,11 +106,13 @@ class ShareForm extends Component {
               <Field
                 name="tags"
                 component="select"
-                type="text box"
+                type="checkbox"
+                placeholder="Add some tags"
                 validate={validate}
               >
                 <option />
-                <option></option>
+                <option type="checkbox">fun</option>
+                <option>sunny</option>
               </Field>
             </FormControl>
           </form>

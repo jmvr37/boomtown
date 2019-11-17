@@ -45,7 +45,7 @@ class AccountForm extends Component {
             : signupMutation(user).catch(error => this.setState({ error }));
         }}
         validate={validate}
-        render={({ handleSubmit, form, pristine, validate }) => (
+        render={({ handleSubmit, form, pristine, validate, invalid }) => (
           <form onSubmit={handleSubmit} className={classes.accountForm}>
             {!this.state.formToggle && (
               <FormControl fullWidth className={classes.formControl}>
@@ -124,7 +124,7 @@ class AccountForm extends Component {
                   size="large"
                   color="secondary"
                   disabled={
-                    pristine || false // @TODO: This prop should depend on pristine or valid state of form
+                    pristine || invalid // @TODO: This prop should depend on pristine or valid state of form
                   }
                 >
                   {this.state.formToggle ? "Enter" : "Create Account"}
