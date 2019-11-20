@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
+import ItemPreviewProvider from "../src/context/ItemPreviewProvider";
 
 /**
  * @TODO: Initialize Apollo Client
@@ -57,11 +58,11 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       {/* <Home /> */}
-      {/* <ViewerProvider> */}
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-      {/* </ViewerProvider> */}
+      <ItemPreviewProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </ItemPreviewProvider>
     </MuiThemeProvider>
   );
 };

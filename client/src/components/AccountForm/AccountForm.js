@@ -165,11 +165,11 @@ class AccountForm extends Component {
   }
 }
 
-const refetchQueries = [
-  {
-    query: VIEWER_QUERY
-  }
-];
+// const refetchQueries = [
+//   {
+//     query: VIEWER_QUERY
+//   }
+// ];
 
 // export default compose(
 //   graphql(SIGNUP_MUTATION, {
@@ -184,4 +184,5 @@ const refetchQueries = [
 //     },
 //     name: "loginMutation"
 //   }),
+
 export default withStyles(styles)(AccountForm);
