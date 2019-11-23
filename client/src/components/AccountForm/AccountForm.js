@@ -12,13 +12,13 @@ import {
   SIGNUP_MUTATION,
   VIEWER_QUERY
 } from "../../apollo/queries";
-// import { graphql, compose } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import validate from "./helpers/validation";
 // import PropTypes from "prop-types";
 import styles from "./styles";
 import { TextField } from "@material-ui/core/";
 
-// const required = value => (value ? undefined : "Required");
+const required = value => (value ? undefined : "Required");
 
 // const onFormSubmitFunc = values => {
 //   console.log(values);
@@ -35,14 +35,24 @@ class AccountForm extends Component {
 
   render() {
     const { classes, loginMutation, signupMutation } = this.props;
-
+    console.log(this.props);
     return (
       <Form
         onSubmit={values => {
           const user = { variables: { user: values } };
-          this.state.formToggle
-            ? loginMutation(user).catch(error => this.setState({ error }))
-            : signupMutation(user).catch(error => this.setState({ error }));
+          console.log(user, this.state);
+          if (this.state.formToggle) {
+            loginMutation(user).catch(error =>
+              this.setState({ error, problem: "Wrong password" })
+            );
+          } else {
+            signupMutation(user).catch(error =>
+              this.setState({
+                error,
+                problem: "please verify your info"
+              })
+            );
+          }
         }}
         validate={validate}
         render={({ handleSubmit, form, pristine, validate, invalid }) => (
@@ -61,7 +71,6 @@ class AccountForm extends Component {
                       value={props.input.value}
                     />
                   )}
-                  ;
                 </Field>
               </FormControl>
             )}
@@ -70,21 +79,21 @@ class AccountForm extends Component {
 
               <Field
                 name="email"
-                component="Input"
+                component="input"
                 type="text"
                 validate={validate}
               >
-                {({ props, meta }) => (
-                  <TextField
+                {({ input, meta }) => (
+                  <Input
                     id="email"
                     type="text"
                     inputProps={{
+                      ...input,
                       autoComplete: "off"
                     }}
-                    value={props.input.value}
+                    value={input.value}
                   />
                 )}
-                ;
               </Field>
             </FormControl>
 
@@ -97,17 +106,17 @@ class AccountForm extends Component {
                 type="password"
                 validate={validate}
               >
-                {props => (
+                {({ input, meta }) => (
                   <Input
                     id="password"
                     type="password"
                     inputProps={{
+                      ...input,
                       autoComplete: "off"
                     }}
-                    value={props.input.value}
+                    value={input.value}
                   />
                 )}
-                ;
               </Field>
             </FormControl>
             <FormControl className={classes.formControl}>
@@ -134,7 +143,6 @@ class AccountForm extends Component {
                     className={classes.formToggle}
                     type="button"
                     onClick={() => {
-                      // @TODO: Reset the form on submit
                       form.reset();
                       this.setState({
                         error: null,
@@ -153,10 +161,10 @@ class AccountForm extends Component {
               {/* @TODO: Display sign-up and login errors */}
               {(this.state.error &&
                 this.state.formToggle &&
-                this.state.error.graphQLErrors[0].message) ||
+                this.state.error.graphQLErrors.message) ||
                 (this.state.error &&
                   !this.state.formToggle &&
-                  this.state.error.graphQLErrors[0].message)}
+                  this.state.error.graphQLErrors.message)}
             </Typography>
           </form>
         )}
@@ -185,4 +193,48 @@ class AccountForm extends Component {
 //     name: "loginMutation"
 //   }),
 
-export default withStyles(styles)(AccountForm);
+export default compose(
+  graphql(SIGNUP_MUTATION, {
+    options: {
+      query: {
+        VIEWER_QUERY
+      }
+    },
+    name: "signupMutation"
+  }),
+  graphql(LOGIN_MUTATION, {
+    options: {
+      query: {
+        VIEWER_QUERY
+      }
+    },
+    name: "loginMutation"
+  }),
+  withStyles(styles)
+)(AccountForm);
+
+// values => {
+//   const user = { variables: { user: values } };
+//   this.state.formToggle
+//     ? loginMutation(user).catch(error => this.setState({ error }))
+//     : signupMutation(user).catch(error => this.setState({ error }));
+// }
+
+// values => {
+//   const user = { variables: { user: values } };
+//   if (this.state.formToggle) {
+//     loginMutation(user).catch(error =>
+//       this.setState({ error, problem: "Wrong password" })
+//     );
+//   } else {
+//     signupMutation(user).catch(error =>
+//       this.setState({
+//         error,
+//         problem: "please verify your info"
+//       })
+//     );
+//   }
+//   console.log(values);
+// }
+
+//

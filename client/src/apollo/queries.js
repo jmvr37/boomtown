@@ -101,7 +101,10 @@ export const LOGOUT_MUTATION = gql`
 export const SIGNUP_MUTATION = gql`
   mutation signup($user: SignupInput!) {
     signup(user: $user) {
-      id
+      token
+      user {
+        id
+      }
     }
   }
 `;
@@ -109,7 +112,10 @@ export const SIGNUP_MUTATION = gql`
 export const LOGIN_MUTATION = gql`
   mutation login($user: LoginInput!) {
     login(user: $user) {
-      id
+      token
+      user {
+        id
+      }
     }
   }
 `;

@@ -1,6 +1,7 @@
 const { ApolloServer } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const { AuthDirective } = require("../api/custom-directives");
+const jwt = require("jsonwebtoken");
 
 const typeDefs = require("../api/schema");
 let resolvers = require("../api/resolvers");
@@ -33,6 +34,7 @@ module.exports = ({ app, pgResource }) => {
           user
         };
       } catch (e) {
+        console.log("contect error");
         throw error;
       }
     },

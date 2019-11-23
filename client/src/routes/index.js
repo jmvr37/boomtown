@@ -4,34 +4,38 @@ import Home from "../pages/Home/Home.js";
 import Items from "../pages/Items";
 import Profile from "../pages/Profile";
 import Share from "../pages/Share/Share";
-
-// const profiles = ({ match }) => (
-//   <div>
-//     <Route
-//       path={`${match.url}/profile/:id`}
-//       render={({ match }) => <h2>{match.params.id}</h2>}
-//     />
-//   </div>
-// );
-
+import { ViewerContext } from "../context/ViewerProvider";
+import Menu from "../components/Menu/NavBar";
 export default () => (
-  <Fragment>
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/items" component={Items} />
-      {/* <Route path="/profile" component={Profile} /> */}
-      <Route path="/profile/:id" component={Profile} />
+  <ViewerContext.Consumer>
+    {({ loading, viewer }) => {
+      if (loading) return null;
+      if (!viewer) {
+        return (
+          <Switch>
+            {/* <Redirect from="/home" to="/items" /> */}
+            <Route exact path="/home" component={Home} />
+            <Redirect from="*" to="/items" />
+            <Route path="/items" component={Items} />
+          </Switch>
+        );
+      } else {
+        console.log("viewer here", viewer);
 
-      <Route path="/share" component={Share} />
-
-      {/**
-       * @TODO: Define routes here for: /items, /profile, /profile/:userid, and /share
-       *
-       * Provide a wildcard redirect to /items for any undefined route using <Redirect />.
-       *
-       * Later, we'll add logic to send users to one set of routes if they're logged in,
-       * or only view the /welcome page if they are not.
-       */}
-    </Switch>
-  </Fragment>
+        return (
+          <Fragment>
+            <Menu />
+            <Switch>
+              <Route path="/items" component={Items} />
+              <Route path="/profile/:id" component={Profile} />
+              <Redirect from="/home" to="/items" />
+              <Route exact path="/home" component={Home} />
+              <Route path="/share" component={Share} />
+              <Redirect from="*" to="/items" />
+            </Switch>
+          </Fragment>
+        );
+      }
+    }}
+  </ViewerContext.Consumer>
 );

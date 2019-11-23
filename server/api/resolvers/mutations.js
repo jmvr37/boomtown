@@ -23,9 +23,7 @@ function generateToken(user, secret) {
 const mutationResolvers = app => ({
   async signup(
     parent,
-    {
-      user: { fullname, email, password }
-    },
+    { user: { fullname, email, password } },
     { pgResource, req }
   ) {
     try {
@@ -53,14 +51,9 @@ const mutationResolvers = app => ({
     }
   },
 
-  async login(
-    parent,
-    {
-      user: { email, password }
-    },
-    { pgResource, req }
-  ) {
+  async login(parent, { user: { email, password } }, { pgResource, req }) {
     try {
+      console.log("trying to log in");
       const user = await pgResource.getUserAndPasswordForVerification(email);
       if (!user) throw "User was not found.";
 
@@ -75,7 +68,6 @@ const mutationResolvers = app => ({
         token,
         res: req.res
       });
-
       return {
         token,
         user
@@ -87,6 +79,7 @@ const mutationResolvers = app => ({
 
   logout(parent, args, context) {
     context.req.res.clearCookie(app.get("JWT_COOKIE_NAME"));
+
     return true;
   },
   async addItem(parent, { item }, context, info) {

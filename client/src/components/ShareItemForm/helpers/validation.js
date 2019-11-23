@@ -1,6 +1,14 @@
 export default function validate(values) {
   const errors = {};
-
+  if (!values.ItemName) {
+    errors.ItemName = "Required";
+  }
+  if (!values.Describe) {
+    errors.Describe = "Required";
+  }
+  if (!values.tags) {
+    errors.tags = "Required";
+  }
   /**
    * @TODO: Write the validation rules for the share form.
    *
