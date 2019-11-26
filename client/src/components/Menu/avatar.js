@@ -13,7 +13,7 @@ const styles = {
     overflow: "visible"
   },
   bigAvatar: {
-    height: 48
+    height: 40
   }
 };
 

@@ -14,9 +14,8 @@ export default () => (
         return (
           <Switch>
             {/* <Redirect from="/home" to="/items" /> */}
-            <Route exact path="/home" component={Home} />
-            <Redirect from="*" to="/items" />
-            <Route path="/items" component={Items} />
+            <Route exact path="/welcome" component={Home} />
+            <Redirect from="*" to="/welcome" />
           </Switch>
         );
       } else {

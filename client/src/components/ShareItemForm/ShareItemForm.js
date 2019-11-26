@@ -31,13 +31,12 @@ class ShareForm extends Component {
         {({ state, updatePreview, resetPreview }) => (
           <Form
             onSubmit={onSubmitFunc}
-            // validate={validate}
-
+            // validate={updatePreview} // CHANGE THIS
             render={({ handleSubmit, form, pristine, validate, invalid }) => (
               <form className={classes.rightContainer}>
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
-                <FormControl fullWidth className={classes.rightContainer}>
+                <FormControl fullWidth className={classes.Container}>
                   <div>
                     <Button
                       component="file"
@@ -47,6 +46,7 @@ class ShareForm extends Component {
                       className={classes.button_large}
                       color="primary"
                     >
+                      Upload an image
                       {({ input, meta }) => (
                         <Input
                           id="imgUrl"
@@ -110,7 +110,7 @@ class ShareForm extends Component {
                     )}
                   </Field>
                 </FormControl>
-                <FormControl fullWidth className={classes.container}>
+                <FormControl fullWidth className={classes.Container}>
                   <InputLabel htmlFor="tags">Add some tags</InputLabel>
 
                   <Field
@@ -125,29 +125,28 @@ class ShareForm extends Component {
                     <option>sunny</option>
                   </Field>
                 </FormControl>
-                <FormControl fullWidth className={classes.rightContainer}>
-                  <div>
-                    <Button
-                      component="submit"
-                      type="submit"
-                      placeholder="Share "
-                      validate={validate}
-                      className={classes.button_large}
-                      color="primary"
-                    >
-                      {({ input, meta }) => (
-                        <Input
-                          id="ShareBtn"
-                          type="file"
-                          inputProps={{
-                            ...input,
-                            autoComplete: "off"
-                          }}
-                          value={input.value}
-                        />
-                      )}
-                    </Button>
-                  </div>
+                <FormControl className={classes.Container}>
+                  <Button
+                    component="submit"
+                    type="submit"
+                    placeholder="Share"
+                    validate={validate}
+                    className={classes.button_large}
+                    color="primary"
+                  >
+                    share
+                    {({ input, meta }) => (
+                      <Input
+                        id="ShareBtn"
+                        type="submit"
+                        inputProps={{
+                          ...input,
+                          autoComplete: "off"
+                        }}
+                        value={input.value}
+                      />
+                    )}
+                  </Button>
                 </FormControl>
               </form>
             )}

@@ -1,19 +1,25 @@
+import { TextareaAutosize } from "@material-ui/core";
+
 const input_large_field = "70%";
 const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
-    width: "90%",
-    margin: "auto"
+    width: "100%",
+    margin: "auto",
+    marginTop: "20px",
+    marginBotton: "30px"
   },
   leftContainer: {
     marginLeft: theme.spacing.unit,
-    width: "35%"
+    width: "35%",
+    marginTop: "20px"
   },
   rightContainer: {
     marginLeft: theme.spacing.unit,
-    width: "48%"
+    width: "48%",
+    marginTop: "20px"
   },
 
   textField: {
@@ -31,7 +37,8 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     width: input_large_field,
     backgroundColor: "#f9a825 !important",
-    color: "black !important"
+    color: "black !important",
+    marginTop: "40px"
   },
   button_large_off: {
     marginLeft: theme.spacing.unit,
