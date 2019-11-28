@@ -6,20 +6,10 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
-    width: "100%",
-    margin: "auto",
+    width: "48%",
+
     marginTop: "20px",
     marginBotton: "30px"
-  },
-  leftContainer: {
-    marginLeft: theme.spacing.unit,
-    width: "35%",
-    marginTop: "20px"
-  },
-  rightContainer: {
-    marginLeft: theme.spacing.unit,
-    width: "48%",
-    marginTop: "20px"
   },
 
   textField: {
@@ -37,8 +27,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     width: input_large_field,
     backgroundColor: "#f9a825 !important",
-    color: "black !important",
-    marginTop: "40px"
+    color: "black !important"
   },
   button_large_off: {
     marginLeft: theme.spacing.unit,
@@ -47,8 +36,11 @@ const styles = theme => ({
   },
 
   title: {
-    fontSize: "3rem",
-    marginLeft: theme.spacing.unit
+    width: "100%",
+    fontWeight: "900",
+    marginLeft: theme.spacing.unit,
+    fontSize: "37px",
+    marginBotton: "0"
   },
   field_large: {
     width: input_large_field,

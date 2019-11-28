@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/styles";
+import { withStyles, mergeClasses } from "@material-ui/styles";
 import styles from "./styles";
 import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import ItemCard from "../Card/ItemCard";
@@ -9,14 +9,10 @@ export class ShareItemPreview extends Component {
     return (
       <ItemPreviewContext.Consumer>
         {({ state }) => {
-          console.log(state.item.ItemName);
+          console.log(state.item);
           return (
             <div>
-              <ItemCard />
-              {state && state.item && state.item.ItemName}
-              {/* <img src={state.imgUrl} />
-            <h1>{state.title}</h1>
-            <h1>{state.description}</h1> */}
+              <ItemCard item={state.item} />
             </div>
           );
         }}

@@ -2,8 +2,8 @@ const styles = {
   card: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around",
-    width: "100%",
+    // justifyContent: "space-around",
+    width: "350%",
     margin: "auto",
     marginTop: "20px",
     height: "450px"
@@ -30,7 +30,10 @@ const styles = {
     borderRadius: "50%"
   },
   Icard: {
-    width: "150%"
+    width: "200%"
+  },
+  text: {
+    width: "30%"
   }
 };
 

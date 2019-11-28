@@ -61,14 +61,15 @@ class AccountForm extends Component {
               <FormControl fullWidth className={classes.formControl}>
                 <InputLabel htmlFor="fullname">Username</InputLabel>
                 <Field name="fullmane" component="input" type="text">
-                  {props => (
+                  {({ input, meta }) => (
                     <Input
                       id="fullname"
                       type="text"
                       inputProps={{
+                        ...input,
                         autoComplete: "off"
                       }}
-                      value={props.input.value}
+                      value={input.value}
                     />
                   )}
                 </Field>
@@ -173,12 +174,6 @@ class AccountForm extends Component {
   }
 }
 
-// const refetchQueries = [
-//   {
-//     query: VIEWER_QUERY
-//   }
-// ];
-
 // export default compose(
 //   graphql(SIGNUP_MUTATION, {
 //     options: {
@@ -193,20 +188,23 @@ class AccountForm extends Component {
 //     name: "loginMutation"
 //   }),
 
+const refetchQueries = [
+  {
+    query: VIEWER_QUERY
+  }
+];
 export default compose(
   graphql(SIGNUP_MUTATION, {
     options: {
       query: {
-        VIEWER_QUERY
+        refetchQueries
       }
     },
     name: "signupMutation"
   }),
   graphql(LOGIN_MUTATION, {
     options: {
-      query: {
-        VIEWER_QUERY
-      }
+      refetchQueries
     },
     name: "loginMutation"
   }),

@@ -1,10 +1,10 @@
 const styles = theme => ({
   sharePage: {
     display: "flex",
-    direction: "row",
-    justifyContent: "space-evenly",
-    alignContent: "center",
-    padding: theme.spacing(8)
+    width: "calc(100% + 24px)",
+    margin: "-12px",
+    justifyContent: "space-between",
+    padding: "50px 150px"
   }
 });
 

@@ -17,6 +17,7 @@ class ItemPreviewProvider extends Component {
   }
   updatePreview = item => {
     const updatedItem = { ...this.state.item, ...item };
+    console.log(updatedItem);
     this.setState({ item: updatedItem });
   };
 

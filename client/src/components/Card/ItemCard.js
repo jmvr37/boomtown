@@ -12,38 +12,31 @@ import Button from "@material-ui/core/Button";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import styles from "./styles";
 
-const ItemCard = ({ classes, state }) => {
+const ItemCard = ({ classes, state, item }) => {
+  // console.log(state);
   return (
     <div className={classes.Icard}>
-      <Card className={classes.card}>
+      <Card>
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            // image={state.item.imageUrl}
-          ></CardMedia>
+          <CardMedia className={classes.media} image={item.imgUrl}></CardMedia>
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
                 Jv
               </Avatar>
             }
-            title="jmvr"
+            title={item.titleItem}
             date="last minute"
           />
         </CardActionArea>
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h2"
-            title="{state.item.title}"
-          ></Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            // description={state.item.description}
-          ></Typography>
+        <CardContent className={classes.text}>
+          <Typography gutterBottom variant="h5" component="title">
+            {/* {item.title} */}
+          </Typography>
+
+          <Typography variant="body2" color="textSecondary">
+            {item.describe}
+          </Typography>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">

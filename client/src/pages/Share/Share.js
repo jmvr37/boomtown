@@ -21,8 +21,8 @@ const Share = ({ classes }) => {
   return (
     <>
       <div className={classes.sharePage}>
-        <ShareItemForm />
         <ShareItemPreview />
+        <ShareItemForm />
       </div>
     </>
   );

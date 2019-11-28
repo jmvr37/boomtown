@@ -1,6 +1,8 @@
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
   AppBar: {
     height: 64
@@ -32,6 +34,21 @@ const styles = theme => ({
   },
   link: {
     margin: 10
+  },
+  shareSmth: {
+    marginTop: "30px"
+  },
+  shareMenu: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row"
+  },
+  navB: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  cardContent: {
+    width: "100%"
   }
 });
 

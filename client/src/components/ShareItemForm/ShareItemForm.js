@@ -31,50 +31,49 @@ class ShareForm extends Component {
         {({ state, updatePreview, resetPreview }) => (
           <Form
             onSubmit={onSubmitFunc}
-            // validate={updatePreview} // CHANGE THIS
+            validate={updatePreview} // CHANGE THIS
             render={({ handleSubmit, form, pristine, validate, invalid }) => (
-              <form className={classes.rightContainer}>
+              <form className={classes.container}>
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
-                <FormControl fullWidth className={classes.Container}>
-                  <div>
-                    <Button
-                      component="file"
-                      type="file"
-                      placeholder="SELECT AN IMAGE "
-                      validate={validate}
-                      className={classes.button_large}
-                      color="primary"
-                    >
-                      Upload an image
-                      {({ input, meta }) => (
-                        <Input
-                          id="imgUrl"
-                          type="file"
-                          inputProps={{
-                            ...input,
-                            autoComplete: "off"
-                          }}
-                          value={input.value}
-                        />
-                      )}
-                    </Button>
-                  </div>
+                <FormControl fullWidth>
+                  <Button
+                    component="file"
+                    type="file"
+                    placeholder="SELECT AN IMAGE "
+                    validate={validate}
+                    className={classes.button_large}
+                    color="primary"
+                  >
+                    Upload an image
+                    {({ input, meta }) => (
+                      <Input
+                        id="imgUrl"
+                        type="file"
+                        inputProps={{
+                          ...input,
+                          autoComplete: "off"
+                        }}
+                        value={input.value}
+                      />
+                    )}
+                  </Button>
                 </FormControl>
 
-                <FormControl fullWidth className={classes.container}>
-                  <InputLabel htmlFor="ItemName">Name your Item</InputLabel>
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="titleItem">Name your Item</InputLabel>
 
                   <Field
-                    name="ItemName"
+                    name="titleItem"
                     component="input"
                     type="text"
-                    placeholder={state.item.title}
+                    placeholder={state.item.titleItem}
                     validate={validate}
+                    className={classes.textField}
                   >
                     {({ input, meta }) => (
                       <Input
-                        id="ItemName"
+                        id="titleItem"
                         type="text"
                         inputProps={{
                           ...input,
@@ -86,20 +85,21 @@ class ShareForm extends Component {
                   </Field>
                 </FormControl>
 
-                <FormControl fullWidth className={classes.container}>
-                  <InputLabel htmlFor="Describe">Describe Your Item</InputLabel>
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="describe">Describe Your Item</InputLabel>
 
                   <Field
-                    name="Describe"
+                    name="describe"
                     component="Input"
                     type="text box"
-                    placeholder="Describe Your Item"
+                    placeholder={state.item.Describe}
                     validate={validate}
                   >
                     {({ input, meta }) => (
                       <Input
-                        id="Describe"
-                        className={classes.TextField}
+                        id="describe"
+                        type="text"
+                        className={classes.field_large}
                         multiline
                         inputProps={{
                           ...input,
@@ -110,14 +110,14 @@ class ShareForm extends Component {
                     )}
                   </Field>
                 </FormControl>
-                <FormControl fullWidth className={classes.Container}>
+                <FormControl fullWidth>
                   <InputLabel htmlFor="tags">Add some tags</InputLabel>
 
                   <Field
                     name="tags"
                     component="select"
                     type="checkbox"
-                    placeholder="Add some tags"
+                    placeholder={state.item.tags}
                     validate={validate}
                   >
                     <option />
@@ -125,13 +125,13 @@ class ShareForm extends Component {
                     <option>sunny</option>
                   </Field>
                 </FormControl>
-                <FormControl className={classes.Container}>
+                <FormControl>
                   <Button
                     component="submit"
                     type="submit"
                     placeholder="Share"
                     validate={validate}
-                    className={classes.button_large}
+                    className={classes.button_small}
                     color="primary"
                   >
                     share
