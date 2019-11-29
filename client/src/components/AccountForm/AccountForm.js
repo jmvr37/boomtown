@@ -210,29 +210,3 @@ export default compose(
   }),
   withStyles(styles)
 )(AccountForm);
-
-// values => {
-//   const user = { variables: { user: values } };
-//   this.state.formToggle
-//     ? loginMutation(user).catch(error => this.setState({ error }))
-//     : signupMutation(user).catch(error => this.setState({ error }));
-// }
-
-// values => {
-//   const user = { variables: { user: values } };
-//   if (this.state.formToggle) {
-//     loginMutation(user).catch(error =>
-//       this.setState({ error, problem: "Wrong password" })
-//     );
-//   } else {
-//     signupMutation(user).catch(error =>
-//       this.setState({
-//         error,
-//         problem: "please verify your info"
-//       })
-//     );
-//   }
-//   console.log(values);
-// }
-
-//

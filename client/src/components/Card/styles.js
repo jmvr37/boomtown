@@ -1,15 +1,15 @@
 const styles = {
   card: {
-    display: "flex",
-    flexWrap: "wrap",
+    // display: "flex",
+    // flexWrap: "wrap",
     // justifyContent: "space-around",
-    width: "350%",
-    margin: "auto",
-    marginTop: "20px",
-    height: "450px"
+    width: 400
+    // margin: "auto",
+    // marginTop: "20px",
+    // height: "450px"
   },
   media: {
-    height: 0,
+    height: 220,
     paddingTop: "56.25%" // 16:9
   },
 
@@ -26,14 +26,12 @@ const styles = {
   user_span: {
     margin: "0px"
   },
-  gravatar: {
-    borderRadius: "50%"
-  },
+
   Icard: {
     width: "200%"
   },
   text: {
-    width: "30%"
+    height: 120
   }
 };
 

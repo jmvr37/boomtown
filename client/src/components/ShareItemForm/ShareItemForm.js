@@ -13,22 +13,33 @@ import ItemPreviewProvider, {
 } from "../../context/ItemPreviewProvider";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Select from "@material-ui/core/Select";
+import Checkbox from "@material-ui/core/Checkbox";
+import ListItemText from "@material-ui/core/ListItemText";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const onSubmitFunc = values => {
   console.log(values);
 };
 
+// const handleChange = event => {
+//   selectTag(event.tags.value);
+// };
+
 class ShareForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      value: "",
+      selectTags: []
+    };
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, tags } = this.props;
     return (
       <ItemPreviewContext.Consumer>
-        {({ state, updatePreview, resetPreview }) => (
+        {({ state, updatePreview, resetPreview, selectTag }) => (
           <Form
             onSubmit={onSubmitFunc}
             validate={updatePreview} // CHANGE THIS
@@ -37,30 +48,25 @@ class ShareForm extends Component {
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
                 <FormControl fullWidth>
-                  <Button
-                    component="file"
-                    type="file"
-                    placeholder="SELECT AN IMAGE "
-                    validate={validate}
-                    className={classes.button_large}
-                    color="primary"
-                  >
-                    Upload an image
-                    {({ input, meta }) => (
-                      <Input
-                        id="imgUrl"
+                  <Field
+                    id="imgUrl"
+                    render={({ input, meta }) => (
+                      <Button
+                        component="file"
                         type="file"
-                        inputProps={{
-                          ...input,
-                          autoComplete: "off"
-                        }}
+                        placeholder="SELECT AN IMAGE "
+                        // validate={validate}
+                        className={classes.button_large}
+                        color="primary"
                         value={input.value}
-                      />
+                      >
+                        Upload an image
+                      </Button>
                     )}
-                  </Button>
+                  />
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl fullWidth className={classes.textField}>
                   <InputLabel htmlFor="titleItem">Name your Item</InputLabel>
 
                   <Field
@@ -69,7 +75,6 @@ class ShareForm extends Component {
                     type="text"
                     placeholder={state.item.titleItem}
                     validate={validate}
-                    className={classes.textField}
                   >
                     {({ input, meta }) => (
                       <Input
@@ -85,7 +90,7 @@ class ShareForm extends Component {
                   </Field>
                 </FormControl>
 
-                <FormControl fullWidth>
+                <FormControl fullWidth className={classes.field_large}>
                   <InputLabel htmlFor="describe">Describe Your Item</InputLabel>
 
                   <Field
@@ -99,7 +104,6 @@ class ShareForm extends Component {
                       <Input
                         id="describe"
                         type="text"
-                        className={classes.field_large}
                         multiline
                         inputProps={{
                           ...input,
@@ -110,42 +114,40 @@ class ShareForm extends Component {
                     )}
                   </Field>
                 </FormControl>
-                <FormControl fullWidth>
+                <FormControl fullWidth className={classes.Tags}>
                   <InputLabel htmlFor="tags">Add some tags</InputLabel>
 
-                  <Field
-                    name="tags"
-                    component="select"
-                    type="checkbox"
-                    placeholder={state.item.tags}
-                    validate={validate}
+                  <Select
+                    labelId="tags"
+                    id="tags"
+                    multiple
+                    value={this.state.selectTags}
+                    // onChange={handleChange}
+                    input={<Input />}
+                    renderValue={selected => selected.join(", ")}
+                    // MenuProps={MenuProps}
                   >
-                    <option />
-                    <option type="checkbox">fun</option>
-                    <option>sunny</option>
-                  </Field>
+                    {tags &&
+                      tags.map(tag => (
+                        <MenuItem key={tag.title} value={tag.title}>
+                          <Checkbox
+                            checked={this.state.selectTags.indexOf(tag) > -1}
+                          />
+                          <ListItemText primary={tag.title} />
+                        </MenuItem>
+                      ))}
+                  </Select>
                 </FormControl>
                 <FormControl>
                   <Button
-                    component="submit"
                     type="submit"
                     placeholder="Share"
                     validate={validate}
                     className={classes.button_small}
                     color="primary"
+                    onClick={() => form.reset()}
                   >
                     share
-                    {({ input, meta }) => (
-                      <Input
-                        id="ShareBtn"
-                        type="submit"
-                        inputProps={{
-                          ...input,
-                          autoComplete: "off"
-                        }}
-                        value={input.value}
-                      />
-                    )}
                   </Button>
                 </FormControl>
               </form>

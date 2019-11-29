@@ -1,4 +1,5 @@
 import React, { createContext, Component } from "react";
+import { ALL_TAGS_QUERY } from "../apollo/queries";
 
 export const ItemPreviewContext = createContext();
 const InitialState = {

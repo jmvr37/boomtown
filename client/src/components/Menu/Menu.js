@@ -6,8 +6,10 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { AppBar } from "@material-ui/core";
 import { mergeClasses } from "@material-ui/styles";
 import styles from "./styles";
-
-const options = ["Your profile", "sign out"];
+import { Link, withRouter } from "react-router-dom";
+import { LOGOUT_MUTATION } from "../../apollo/queries";
+import { Mutation } from "react-apollo";
+import client from "../../apollo";
 
 const ITEM_HEIGHT = 48;
 
@@ -47,15 +49,18 @@ export default function LongMenu() {
             }
           }}
         >
-          {options.map(option => (
-            <MenuItem
-              key={option}
-              selected={option === "Pyxis"}
-              onClick={handleClose}
-            >
-              {option}
-            </MenuItem>
-          ))}
+          <Link to={"/profile/34"}>
+            <MenuItem onClick={handleClose}>Your Profile</MenuItem>
+          </Link>
+
+          <Mutation
+            mutation={LOGOUT_MUTATION}
+            onCompleted={() => client.resetStore()}
+          >
+            {LogoutMutation => (
+              <MenuItem onClick={LogoutMutation}>Log Out</MenuItem>
+            )}
+          </Mutation>
         </Menu>
       </div>
     </div>

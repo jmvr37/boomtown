@@ -11,9 +11,20 @@ import Avatar from "./avatar";
 import { Link, withRouter } from "react-router-dom";
 import Menu from "../Menu/Menu";
 import LongMenu from "../Menu/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
-export default function ProminentAppBar() {
-  const classes = styles();
+const NavBar = ({ classes }) => {
+  const [auth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const ITEM_HEIGHT = 48;
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <AppBar position="static" className={classes.AppBar}>
@@ -38,10 +49,24 @@ export default function ProminentAppBar() {
             </Link>
           </div>
           <div>
-            <Menu />
+            <Menu
+              id="long-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: 200
+                }
+              }}
+            ></Menu>
           </div>
         </div>
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default withStyles(styles)(NavBar);

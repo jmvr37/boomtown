@@ -15,7 +15,7 @@ import styles from "./styles";
 const ItemCard = ({ classes, state, item }) => {
   // console.log(state);
   return (
-    <div className={classes.Icard}>
+    <div className={classes.card}>
       <Card>
         <CardActionArea>
           <CardMedia className={classes.media} image={item.imgUrl}></CardMedia>

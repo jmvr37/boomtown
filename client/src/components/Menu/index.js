@@ -1,3 +1,3 @@
-import ProminentAppBar from "../Menu/NavBar";
+import NavBar from "../Menu/NavBar";
 
-export default ProminentAppBar;
+export default NavBar;

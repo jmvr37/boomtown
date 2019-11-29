@@ -3,7 +3,7 @@ import { Redirect, Route, Switch, NavBar } from "react-router";
 import Home from "../pages/Home/Home.js";
 import Items from "../pages/Items";
 import Profile from "../pages/Profile";
-import Share from "../pages/Share/Share";
+import Share from "../pages/Share";
 import { ViewerContext } from "../context/ViewerProvider";
 import Menu from "../components/Menu/NavBar";
 export default () => (
