@@ -23,7 +23,9 @@ const onSubmitFunc = values => {
 };
 
 // const handleChange = event => {
-//   selectTag(event.tags.value);
+//   this.setState({
+//     selectedTags: this.state.selectTags
+//   });
 // };
 
 class ShareForm extends Component {

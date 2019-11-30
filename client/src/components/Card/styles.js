@@ -3,7 +3,7 @@ const styles = {
     // display: "flex",
     // flexWrap: "wrap",
     // justifyContent: "space-around",
-    width: 400
+    width: 320
     // margin: "auto",
     // marginTop: "20px",
     // height: "450px"

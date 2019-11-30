@@ -25,13 +25,13 @@ const ItemCard = ({ classes, state, item }) => {
                 Jv
               </Avatar>
             }
-            title={item.titleItem}
+            // title={item.titleItem}
             date="last minute"
           />
         </CardActionArea>
         <CardContent className={classes.text}>
           <Typography gutterBottom variant="h5" component="title">
-            {/* {item.title} */}
+            {item.titleItem}
           </Typography>
 
           <Typography variant="body2" color="textSecondary">

@@ -3,7 +3,7 @@ const styles = theme => ({
     display: "flex",
     width: "calc(100% + 24px)",
     margin: "-12px",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     padding: "50px 150px"
   }
 });
