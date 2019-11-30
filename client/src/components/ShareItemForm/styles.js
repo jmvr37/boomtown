@@ -59,6 +59,10 @@ const styles = theme => ({
     marginTop: "20px",
     width: "100%",
     marginLeft: "8px"
+  },
+
+  input: {
+    display: "none"
   }
 });
 

@@ -48,7 +48,24 @@ class ShareForm extends Component {
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
                 <FormControl fullWidth>
-                  <Field
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    id="contained-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button
+                      className={classes.button_large}
+                      variant="contained"
+                      color="primary"
+                      component="span"
+                    >
+                      Select an Image
+                    </Button>
+                  </label>
+                  {/* <Field
                     id="imgUrl"
                     render={({ input, meta }) => (
                       <Button
@@ -64,7 +81,7 @@ class ShareForm extends Component {
                         Upload an image
                       </Button>
                     )}
-                  />
+                  /> */}
                 </FormControl>
 
                 <FormControl fullWidth className={classes.textField}>
