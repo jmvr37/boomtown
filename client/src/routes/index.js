@@ -26,7 +26,7 @@ export default () => (
             <Menu />
             <Switch>
               <Route path="/items" component={Items} />
-              <Route path="/profile/:id" component={Profile} />
+              <Route path="/profile/" component={Profile} />
               <Redirect from="/home" to="/items" />
               <Route exact path="/home" component={Home} />
               <Route path="/share" component={Share} />

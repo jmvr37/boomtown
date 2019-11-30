@@ -53,12 +53,13 @@ class ShareForm extends Component {
                     render={({ input, meta }) => (
                       <Button
                         component="file"
-                        type="file"
                         placeholder="SELECT AN IMAGE "
                         // validate={validate}
                         className={classes.button_large}
                         color="primary"
                         value={input.value}
+                        accept="image/*"
+                        type="file"
                       >
                         Upload an image
                       </Button>

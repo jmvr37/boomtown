@@ -1,13 +1,14 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
-
-const Profile = props => {
+import ProfileCard from "../../components/ProfileCard";
+import Typography from "@material-ui/core/Typography";
+const Profile = ({ props, classes }) => {
   return (
-    <div>
-      <p>
-        This is the profile page located at <code>/profile/{props.id}</code>.
-      </p>
+    <div className={classes.profilePage}>
+      <ProfileCard />
+      <Typography className={classes.title}></Typography>
+      <div className={classes.userItems}></div>
     </div>
   );
 };

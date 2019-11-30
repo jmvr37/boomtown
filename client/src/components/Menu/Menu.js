@@ -49,7 +49,7 @@ export default function LongMenu() {
             }
           }}
         >
-          <Link to={"/profile/34"}>
+          <Link to={"/profile/"}>
             <MenuItem onClick={handleClose}>Your Profile</MenuItem>
           </Link>
 
