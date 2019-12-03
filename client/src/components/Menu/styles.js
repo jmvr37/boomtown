@@ -33,7 +33,9 @@ const styles = theme => ({
     fontSize: 15
   },
   link: {
-    margin: 10
+    margin: 10,
+    textDecoration: "none",
+    color: "black"
   },
   shareSmth: {
     marginTop: "30px"

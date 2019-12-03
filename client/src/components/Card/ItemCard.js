@@ -12,31 +12,59 @@ import Button from "@material-ui/core/Button";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import styles from "./styles";
 
-const ItemCard = ({ classes, state, item }) => {
+const timeNow = new Date().toLocaleTimeString("en-US", {
+  hour: "numeric",
+  hour12: true,
+  minute: "numeric"
+});
+
+const ItemCard = ({ classes, state, item, tags, viewer }) => {
   // console.log(state);
   return (
     <div className={classes.card}>
       <Card>
         <CardActionArea>
-          <CardMedia className={classes.media} image={item.imgUrl}></CardMedia>
+          <CardMedia className={classes.media} image={item.imgUrl}>
+            {item.imgUrl}
+          </CardMedia>
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
                 Jv
               </Avatar>
             }
-            // title={item.titleItem}
-            date="last minute"
+            // title={viewer.item.fullname}
+            // title={item.itemowner.fullname}
+            subheader="date"
           />
         </CardActionArea>
         <CardContent className={classes.text}>
-          <Typography gutterBottom variant="h5" component="title">
+          <Typography gutterBottom variant="h5" component="h2">
             {item.titleItem}
           </Typography>
 
           <Typography variant="body2" color="textSecondary">
             {item.describe}
           </Typography>
+          {tags &&
+            tags.map(tag => {
+              return (
+                <Typography
+                  key={tag.title}
+                  value={tag.title}
+                  gutterBottom
+                  component="span"
+                  className={classes.spanTags}
+                >
+                  {item.tags}
+                </Typography>
+              );
+            })}
+          <Typography
+            gutterBottom
+            component="span"
+            className={classes.spanTags}
+          />
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">

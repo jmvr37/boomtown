@@ -17,16 +17,16 @@ import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
+import { graphql, compose } from "react-apollo";
+import { ADD_ITEM_MUTATION } from "../../apollo/queries";
 
 const onSubmitFunc = values => {
-  console.log(values);
+  const Nitem = { variables: { user: values } };
+  console.log(Nitem, this.state);
+  if (this.state.formToggle) {
+    ADD_ITEM_MUTATION(Nitem).catch(error => this.setState({}));
+  }
 };
-
-// const handleChange = event => {
-//   this.setState({
-//     selectedTags: this.state.selectTags
-//   });
-// };
 
 class ShareForm extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class ShareForm extends Component {
     const { classes, tags } = this.props;
     return (
       <ItemPreviewContext.Consumer>
-        {({ state, updatePreview, resetPreview, selectTag }) => (
+        {({ state, updatePreview, resetPreview, selectTags }) => (
           <Form
             onSubmit={onSubmitFunc}
             validate={updatePreview} // CHANGE THIS
@@ -165,7 +165,8 @@ class ShareForm extends Component {
                     validate={validate}
                     className={classes.button_small}
                     color="primary"
-                    onClick={() => form.reset()}
+                    onSubmit={onSubmitFunc}
+                    onClick={onSubmitFunc => form.reset()}
                   >
                     share
                   </Button>

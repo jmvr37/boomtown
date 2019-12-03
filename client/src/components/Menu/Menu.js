@@ -10,6 +10,8 @@ import { Link, withRouter } from "react-router-dom";
 import { LOGOUT_MUTATION } from "../../apollo/queries";
 import { Mutation } from "react-apollo";
 import client from "../../apollo";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import PowerSettingsNewSharpIcon from "@material-ui/icons/PowerSettingsNewSharp";
 
 const ITEM_HEIGHT = 48;
 
@@ -50,7 +52,10 @@ export default function LongMenu() {
           }}
         >
           <Link to={"/profile/"}>
-            <MenuItem onClick={handleClose}>Your Profile</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <FingerprintIcon />
+              Your Profile
+            </MenuItem>
           </Link>
 
           <Mutation
@@ -58,7 +63,10 @@ export default function LongMenu() {
             onCompleted={() => client.resetStore()}
           >
             {LogoutMutation => (
-              <MenuItem onClick={LogoutMutation}>Log Out</MenuItem>
+              <MenuItem onClick={LogoutMutation}>
+                <PowerSettingsNewSharpIcon />
+                Log Out
+              </MenuItem>
             )}
           </Mutation>
         </Menu>

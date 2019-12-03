@@ -40,14 +40,14 @@ const NavBar = ({ classes }) => {
         </Link>
         <div className={classes.shareMenu}>
           {/* <Typography color="inherit" className={classes.grow} /> */}
-          <div>
-            <Link to="/share" className={classes.link_to}>
-              <IconButton aria-label="add share item" color="inherit">
-                <AddIcon />
-              </IconButton>
-              Share something
-            </Link>
-          </div>
+
+          <Link to="/share" className={classes.link_to}>
+            <IconButton aria-label="add share item" color="inherit">
+              <AddIcon />
+            </IconButton>
+            Share something
+          </Link>
+
           <div>
             <Menu
               id="long-menu"
