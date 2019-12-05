@@ -21,11 +21,15 @@ import { graphql, compose } from "react-apollo";
 import { ADD_ITEM_MUTATION } from "../../apollo/queries";
 
 const onSubmitFunc = values => {
-  const Nitem = { variables: { user: values } };
-  console.log(Nitem, this.state);
-  if (this.state.formToggle) {
-    ADD_ITEM_MUTATION(Nitem).catch(error => this.setState({}));
-  }
+  const itemMutation = {
+    variables: {
+      item: values,
+      title: values.title,
+      description: values.description
+    }
+  };
+  itemMutation(ADD_ITEM_MUTATION);
+  console.log(values);
 };
 
 class ShareForm extends Component {
@@ -46,7 +50,7 @@ class ShareForm extends Component {
             onSubmit={onSubmitFunc}
             validate={updatePreview} // CHANGE THIS
             render={({ handleSubmit, form, pristine, validate, invalid }) => (
-              <form className={classes.container}>
+              <form className={classes.container} onSubmit={handleSubmit}>
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
                 <FormControl fullWidth>
@@ -166,7 +170,7 @@ class ShareForm extends Component {
                     className={classes.button_small}
                     color="primary"
                     onSubmit={onSubmitFunc}
-                    onClick={onSubmitFunc => form.reset()}
+                    // onClick={onSubmitFunc => form.reset()}
                   >
                     share
                   </Button>
@@ -180,4 +184,13 @@ class ShareForm extends Component {
   }
 }
 
-export default withStyles(styles)(ShareForm);
+export default compose(
+  graphql(ADD_ITEM_MUTATION, {
+    options: {
+      query: {}
+    },
+    name: "itemMutation"
+  }),
+
+  withStyles(styles)
+)(ShareForm);

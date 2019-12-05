@@ -51,6 +51,9 @@ const styles = theme => ({
   },
   cardContent: {
     width: "100%"
+  },
+  svgIcon: {
+    marginRight: "15px"
   }
 });
 

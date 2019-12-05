@@ -51,7 +51,7 @@ export default function LongMenu() {
             }
           }}
         >
-          <Link to={"/profile/"}>
+          <Link to={"/profile/"} className={classes.link}>
             <MenuItem onClick={handleClose}>
               <FingerprintIcon />
               Your Profile
@@ -64,7 +64,7 @@ export default function LongMenu() {
           >
             {LogoutMutation => (
               <MenuItem onClick={LogoutMutation}>
-                <PowerSettingsNewSharpIcon />
+                <PowerSettingsNewSharpIcon className={classes.svgIcon} />
                 Log Out
               </MenuItem>
             )}
