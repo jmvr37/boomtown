@@ -18,19 +18,20 @@ import Checkbox from "@material-ui/core/Checkbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
 import { graphql, compose } from "react-apollo";
-import { ADD_ITEM_MUTATION } from "../../apollo/queries";
+import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
 
-const onSubmitFunc = values => {
-  const itemMutation = {
-    variables: {
-      item: values,
-      title: values.title,
-      description: values.description
-    }
-  };
-  itemMutation(ADD_ITEM_MUTATION);
-  console.log(values);
-};
+// const onSubmitFunc = values => {
+//   const itemMutation = {
+//     variables: {
+//       item: {
+//         title: values.title,
+//         description: values.description
+//       }
+//     }
+//   };
+//   ADD_ITEM_MUTATION(itemMutation);
+//   console.log(values);
+// };
 
 class ShareForm extends Component {
   constructor(props) {
@@ -47,7 +48,18 @@ class ShareForm extends Component {
       <ItemPreviewContext.Consumer>
         {({ state, updatePreview, resetPreview, selectTags }) => (
           <Form
-            onSubmit={onSubmitFunc}
+            onSubmit={values => {
+              const itemMutation = {
+                variables: {
+                  item: {
+                    title: values.title,
+                    description: values.description
+                  }
+                }
+              };
+              ADD_ITEM_MUTATION(itemMutation);
+              console.log(values);
+            }}
             validate={updatePreview} // CHANGE THIS
             render={({ handleSubmit, form, pristine, validate, invalid }) => (
               <form className={classes.container} onSubmit={handleSubmit}>
@@ -169,7 +181,7 @@ class ShareForm extends Component {
                     validate={validate}
                     className={classes.button_small}
                     color="primary"
-                    onSubmit={onSubmitFunc}
+                    onSubmit={handleSubmit}
                     // onClick={onSubmitFunc => form.reset()}
                   >
                     share
@@ -183,11 +195,15 @@ class ShareForm extends Component {
     );
   }
 }
-
+const refetchQueries = [
+  {
+    query: ALL_ITEMS_QUERY
+  }
+];
 export default compose(
   graphql(ADD_ITEM_MUTATION, {
     options: {
-      query: {}
+      refetchQueries
     },
     name: "itemMutation"
   }),
