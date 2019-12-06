@@ -42,9 +42,23 @@ class ShareForm extends Component {
     };
   }
 
+  tagCheck = selectTags => {
+    const { tags } = this.props;
+    let out = [];
+
+    tags.map(tag => {
+      if (selectTags.indexOf(tag.title) !== -1) {
+        let { id, title } = tag;
+        out.push({ id, title });
+      }
+    });
+    return out;
+  };
+
   render() {
-    const itemMutation = this.props.itemMutation;
     const { classes, tags } = this.props;
+    console.log("tags", tags);
+    const itemMutation = this.props.itemMutation;
     return (
       <ItemPreviewContext.Consumer>
         {({ state, updatePreview, resetPreview, selectTags }) => (
@@ -52,11 +66,13 @@ class ShareForm extends Component {
             onSubmit={
               (resetPreview,
               values => {
+                this.tagCheck(this.state.selectTags);
                 const addMutation = {
                   variables: {
                     item: {
                       title: values.title,
                       description: values.description,
+                      tags: this.tagCheck(this.state.selectTags);
                       imageUrl: values.imageUrl
                     }
                   }
@@ -192,7 +208,7 @@ class ShareForm extends Component {
                     className={classes.button_small}
                     color="primary"
                     onSubmit={handleSubmit}
-                    // onClick={onSubmitFunc => form.reset()}
+                    onClick={onSubmitFunc => form.reset()}
                   >
                     share
                   </Button>
