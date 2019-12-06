@@ -43,23 +43,33 @@ class ShareForm extends Component {
   }
 
   render() {
+    const itemMutation = this.props.itemMutation;
     const { classes, tags } = this.props;
     return (
       <ItemPreviewContext.Consumer>
         {({ state, updatePreview, resetPreview, selectTags }) => (
           <Form
-            onSubmit={values => {
-              const itemMutation = {
-                variables: {
-                  item: {
-                    title: values.title,
-                    description: values.description
+            onSubmit={
+              (resetPreview,
+              values => {
+                const addMutation = {
+                  variables: {
+                    item: {
+                      title: values.title,
+                      description: values.description,
+                      imageUrl: values.imageUrl
+                    }
                   }
-                }
-              };
-              ADD_ITEM_MUTATION(itemMutation);
-              console.log(values);
-            }}
+                };
+                itemMutation(addMutation).then(() => {
+                  resetPreview();
+                  this.setState({
+                    redirect: true
+                  });
+                });
+                console.log(values);
+              })
+            }
             validate={updatePreview} // CHANGE THIS
             render={({ handleSubmit, form, pristine, validate, invalid }) => (
               <form className={classes.container} onSubmit={handleSubmit}>
