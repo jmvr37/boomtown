@@ -6,13 +6,13 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 
-const ProfileCard = ({ state, classes }) => {
+const ProfileCard = ({ state, classes, viewer }) => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContainer}>
         <div className={classes.userName}>
           <Avatar className={classes.avatar}>jm</Avatar>
-          <Typography className={classes.name}>jm</Typography>
+          <Typography className={classes.name}>jm </Typography>
         </div>
 
         <Typography className={classes.userItems} variant="h5" component="h2">

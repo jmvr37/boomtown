@@ -72,7 +72,7 @@ class ShareForm extends Component {
                     item: {
                       title: values.title,
                       description: values.description,
-                      tags: this.tagCheck(this.state.selectTags);
+                      tags: this.tagCheck(this.state.selectTags),
                       imageUrl: values.imageUrl
                     }
                   }
@@ -159,7 +159,7 @@ class ShareForm extends Component {
                     name="describe"
                     component="Input"
                     type="text box"
-                    placeholder={state.item.Describe}
+                    placeholder={state.item.describe}
                     validate={validate}
                   >
                     {({ input, meta }) => (
@@ -184,7 +184,14 @@ class ShareForm extends Component {
                     id="tags"
                     multiple
                     value={this.state.selectTags}
-                    // onChange={handleChange}
+                    onChange={event => {
+                      this.setState({
+                        selectTags: event.target.value
+                      });
+                      updatePreview({
+                        tags: this.tagCheck(event.target.value)
+                      });
+                    }}
                     input={<Input />}
                     renderValue={selected => selected.join(", ")}
                     // MenuProps={MenuProps}

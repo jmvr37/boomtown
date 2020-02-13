@@ -19,7 +19,10 @@ const timeNow = new Date().toLocaleTimeString("en-US", {
 });
 
 const ItemCard = ({ classes, state, item, tags, viewer }) => {
-  // console.log(state);
+  console.log("state ---->", state);
+  console.log("tags ---->", tags);
+  console.log("item --->", item);
+
   return (
     <div className={classes.card}>
       <Card>
@@ -55,15 +58,16 @@ const ItemCard = ({ classes, state, item, tags, viewer }) => {
                   gutterBottom
                   component="span"
                   className={classes.spanTags}
+                  variant="body2"
                 >
                   {item.tags}
                 </Typography>
               );
             })}
           <Typography
-            gutterBottom
-            component="span"
-            className={classes.spanTags}
+          // gutterBottom
+          // component="span"
+          // className={classes.spanTags}
           />
         </CardContent>
         <CardActions>

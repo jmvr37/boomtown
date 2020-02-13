@@ -4,7 +4,9 @@ import styles from "./styles";
 import ProfileCard from "../../components/ProfileCard";
 import Typography from "@material-ui/core/Typography";
 import ItemGrid from "../../components/ItemGrid/itemGrid";
-const Profile = ({ props, classes }) => {
+
+const Profile = ({ props, classes, viewer }) => {
+  console.log("profile data------>", props);
   return (
     <div className={classes.profilePage}>
       <ProfileCard />

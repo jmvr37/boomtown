@@ -8,7 +8,7 @@
     "jest:watch": "npm run jest -- --watch",
     "test": "npm run jest",
     "start": "NODE_ENV=production node main.js",
-    "start:dev": "NODE_ENV=development nodemon main.js "
+    "dev": "NODE_ENV=development nodemon main.js "
   },
   "keywords": [],
   "author": "",
