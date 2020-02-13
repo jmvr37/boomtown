@@ -60,7 +60,7 @@ const ItemCard = ({ classes, state, item, tags, viewer }) => {
                   className={classes.spanTags}
                   variant="body2"
                 >
-                  {item.tags}
+                  {tag.title}
                 </Typography>
               );
             })}
