@@ -87,7 +87,14 @@ class ShareForm extends Component {
               })
             }
             validate={updatePreview} // CHANGE THIS
-            render={({ handleSubmit, form, pristine, validate, invalid }) => (
+            render={({
+              handleSubmit,
+              form,
+              pristine,
+              validate,
+              submitting,
+              invalid
+            }) => (
               <form className={classes.container} onSubmit={handleSubmit}>
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
@@ -216,6 +223,7 @@ class ShareForm extends Component {
                     color="primary"
                     onSubmit={handleSubmit}
                     onClick={onSubmitFunc => form.reset()}
+                    disable={pristine || invalid || submitting}
                   >
                     share
                   </Button>

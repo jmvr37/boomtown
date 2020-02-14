@@ -159,7 +159,6 @@ class AccountForm extends Component {
               </Grid>
             </FormControl>
             <Typography className={classes.errorMessage}>
-              {/* @TODO: Display sign-up and login errors */}
               {(this.state.error &&
                 this.state.formToggle &&
                 this.state.error.graphQLErrors.message) ||

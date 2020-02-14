@@ -31,15 +31,14 @@ class ProfileCard extends React.Component {
               <div>
                 <Card style={classes.card}>
                   <CardContent style={classes.cardContainer}>
-                    {/* <Paper style={classes.root} elevation={4}> */}
-                    <div>
+                    <div style={classes.gravatarContainer}>
                       <Gravatar
                         email={viewer.email + "/d=retro"}
                         style={classes.gravatar}
                       />
                       <Typography
                         variant="headline"
-                        component="h3"
+                        // component="h3"
                         style={classes.userName}
                       >
                         {viewer.fullname}
@@ -50,14 +49,13 @@ class ProfileCard extends React.Component {
                       <br />
                       {viewer.bio ? viewer.bio : '"No bio provided."'}
                     </Typography>
-                    {/* </Paper> */}
 
                     <Typography
                       variant="headline"
                       component="h1"
                       style={classes.sharedTitle}
                     >
-                      Shared Items
+                      {/* Shared Items */}
                     </Typography>
                   </CardContent>
                 </Card>

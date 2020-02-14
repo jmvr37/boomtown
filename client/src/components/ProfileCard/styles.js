@@ -12,10 +12,10 @@ const styles = theme => ({
   },
   userName: {
     height: "80px",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    backgroundColor: "white"
+    paddingLeft: "15px",
+    color: "gray",
+    paddingTop: "5px",
+    fontSize: "30px"
   },
   avatar: {
     width: "50px",
@@ -35,6 +35,13 @@ const styles = theme => ({
     paddingLeft: "15px",
     fontSize: "1rem",
     paddingTop: "8px"
+  },
+  gravatar: {
+    borderRadius: "25px"
+  },
+  gravatarContainer: {
+    display: "flex",
+    flexDirection: "row"
   }
 });
 export default styles;
