@@ -20,19 +20,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { graphql, compose } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
 
-// const onSubmitFunc = values => {
-//   const itemMutation = {
-//     variables: {
-//       item: {
-//         title: values.title,
-//         description: values.description
-//       }
-//     }
-//   };
-//   ADD_ITEM_MUTATION(itemMutation);
-//   console.log(values);
-// };
-
 class ShareForm extends Component {
   constructor(props) {
     super(props);
@@ -221,9 +208,9 @@ class ShareForm extends Component {
                     validate={validate}
                     className={classes.button_small}
                     color="primary"
-                    onSubmit={handleSubmit}
-                    onClick={onSubmitFunc => form.reset()}
-                    disable={pristine || invalid || submitting}
+                    // onSubmit={handleSubmit}
+                    // onClick={onSubmitFunc => form.reset()}
+                    disabled={pristine || invalid || submitting}
                   >
                     share
                   </Button>

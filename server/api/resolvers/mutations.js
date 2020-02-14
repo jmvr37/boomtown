@@ -54,6 +54,7 @@ const mutationResolvers = app => ({
   async login(parent, { user: { email, password } }, { pgResource, req }) {
     try {
       console.log("trying to log in");
+
       const user = await pgResource.getUserAndPasswordForVerification(email);
       if (!user) throw "User was not found.";
 
@@ -83,6 +84,8 @@ const mutationResolvers = app => ({
     return true;
   },
   async addItem(parent, { item }, context, info) {
+    console.log("console log from server!!!!!!");
+    console.log("Server ---->", item);
     const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
     const newItem = await context.pgResource.saveNewItem({
       item,

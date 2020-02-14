@@ -13,17 +13,18 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import styles from "./styles";
 import { ViewerContext } from "../../context/ViewerProvider.js";
 import Gravatar from "react-gravatar";
-
-const timeNow = new Date().toLocaleTimeString("en-US", {
-  hour: "numeric",
-  hour12: true,
-  minute: "numeric"
-});
-
-const ItemCard = ({ classes, state, item, tags, viewer }) => {
+import { TextField } from "@material-ui/core/";
+const ItemCard = ({ classes, state, item, tags, viewer, timeNow }) => {
   console.log("state ---->", state);
   console.log("tags ---->", tags);
   console.log("item --->", item);
+
+  timeNow = hour => {
+    return new Date(hour).toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit"
+    });
+  };
 
   return (
     <ViewerContext.Consumer>
@@ -46,6 +47,7 @@ const ItemCard = ({ classes, state, item, tags, viewer }) => {
                 >
                   {viewer.fullname}
                 </Typography>
+                <Typography>{timeNow} </Typography>
               </div>
             </CardActionArea>
             <CardContent className={classes.text}>
