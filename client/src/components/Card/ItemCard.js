@@ -49,26 +49,23 @@ const ItemCard = ({ classes, state, item, tags, viewer }) => {
           <Typography variant="body2" color="textSecondary">
             {item.describe}
           </Typography>
-          {tags &&
-            tags.map(tag => {
-              return (
-                <Typography
-                  key={tag.title}
-                  value={tag.title}
-                  gutterBottom
-                  component="span"
-                  className={classes.spanTags}
-                  variant="body2"
-                >
-                  {tag.title}
-                </Typography>
-              );
-            })}
+          {/* {tags &&
+            tags.map(tag => { */}
+          {/* return ( */}
           <Typography
-          // gutterBottom
-          // component="span"
-          // className={classes.spanTags}
-          />
+            gutterBottom
+            component="span"
+            className={classes.spanTags}
+            variant="body2"
+          >
+            {item.tags
+              .map(tag => {
+                return tag.title;
+              })
+              .join(",")}
+          </Typography>
+
+          <Typography />
         </CardContent>
         <CardActions>
           <Button size="small" color="primary">

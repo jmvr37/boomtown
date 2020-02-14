@@ -10,6 +10,7 @@ import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 import { ALL_USER_ITEMS_QUERY } from "../../apollo/queries";
 import Items from "../../pages/Items";
+import Gravatar from "react-gravatar";
 
 class ProfileCard extends React.Component {
   static contextType = ViewerContext;
@@ -28,34 +29,38 @@ class ProfileCard extends React.Component {
 
             return (
               <div>
-                {/* <Paper style={classes.root} elevation={4}> */}
-                <div style={classes.titleContainer}>
-                  {/* <Gravatar
-                  email={viewer.email + "/d=retro"}
-                  style={classes.gravatar}
-                /> */}
-                  <Typography
-                    variant="headline"
-                    component="h3"
-                    style={classes.userName}
-                  >
-                    {viewer.fullname}
-                  </Typography>
-                </div>
-                <Typography component="p">
-                  {user.length} Items shared 0 Items borrowed
-                  <br />
-                  {viewer.bio ? viewer.bio : '"No bio provided."'}
-                </Typography>
-                {/* </Paper> */}
+                <Card style={classes.card}>
+                  <CardContent style={classes.cardContainer}>
+                    {/* <Paper style={classes.root} elevation={4}> */}
+                    <div>
+                      <Gravatar
+                        email={viewer.email + "/d=retro"}
+                        style={classes.gravatar}
+                      />
+                      <Typography
+                        variant="headline"
+                        component="h3"
+                        style={classes.userName}
+                      >
+                        {viewer.fullname}
+                      </Typography>
+                    </div>
+                    <Typography component="p">
+                      {user.length} Items shared 0 Items borrowed
+                      <br />
+                      {viewer.bio ? viewer.bio : '"No bio provided."'}
+                    </Typography>
+                    {/* </Paper> */}
 
-                <Typography
-                  variant="headline"
-                  component="h1"
-                  style={classes.sharedTitle}
-                >
-                  Shared Items
-                </Typography>
+                    <Typography
+                      variant="headline"
+                      component="h1"
+                      style={classes.sharedTitle}
+                    >
+                      Shared Items
+                    </Typography>
+                  </CardContent>
+                </Card>
                 <Items items={user} />
               </div>
             );
