@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import styles from "./styles";
 import { ViewerContext } from "../../context/ViewerProvider.js";
+import Gravatar from "react-gravatar";
 
 const timeNow = new Date().toLocaleTimeString("en-US", {
   hour: "numeric",
@@ -33,16 +34,19 @@ const ItemCard = ({ classes, state, item, tags, viewer }) => {
               <CardMedia className={classes.media} image={item.imgUrl}>
                 {item.imgUrl}
               </CardMedia>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    Jv {viewer.fullname}
-                  </Avatar>
-                }
-                // title={viewer.item.fullname}
-                // title={item.itemowner.fullname}
-                subheader="date"
-              />
+              <div className={classes.gravatarContainer}>
+                <Gravatar
+                  email={viewer.email + "/d=retro"}
+                  className={classes.gravatar}
+                />
+                <Typography
+                  variant="headline"
+                  // component="h3"
+                  className={classes.userName}
+                >
+                  {viewer.fullname}
+                </Typography>
+              </div>
             </CardActionArea>
             <CardContent className={classes.text}>
               <Typography gutterBottom variant="h5" component="h2">

@@ -32,6 +32,22 @@ const styles = {
   },
   text: {
     height: 120
+  },
+  gravatar: {
+    borderRadius: "25px"
+  },
+  gravatarContainer: {
+    display: "flex",
+    flexDirection: "row",
+    paddingLeft: "15px",
+    paddingTop: "15px"
+  },
+  userName: {
+    height: "80px",
+    paddingLeft: "15px",
+    color: "gray",
+    paddingTop: "15px",
+    fontSize: "15px"
   }
 };
 
