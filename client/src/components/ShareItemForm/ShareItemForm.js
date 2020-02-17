@@ -106,7 +106,7 @@ class ShareForm extends Component {
                     multiple
                     type="file"
                   />
-                  <label htmlFor="contained-button-file">
+                  {/* <label htmlFor="contained-button-file">
                     <Button
                       className={classes.button_large}
                       variant="contained"
@@ -115,24 +115,23 @@ class ShareForm extends Component {
                     >
                       Select an Image
                     </Button>
-                  </label>
-                  {/* <Field
+                  </label> */}
+                  <Field
                     id="imgUrl"
                     render={({ input, meta }) => (
-                      <Button
-                        component="file"
+                      <TextField
+                        //component="file"
                         placeholder="SELECT AN IMAGE "
                         // validate={validate}
                         className={classes.button_large}
                         color="primary"
                         value={input.value}
                         accept="image/*"
-                        type="file"
-                      >
-                        Upload an image
-                      </Button>
+                        type="text"
+                      />
                     )}
-                  /> */}
+                  />
+                  Upload an image
                 </FormControl>
 
                 <FormControl fullWidth className={classes.textField}>
@@ -142,7 +141,7 @@ class ShareForm extends Component {
                     name="titleItem"
                     component="input"
                     type="text"
-                    placeholder={state.item.titleItem}
+                    placeholder={state.item.title}
                     validate={validate}
                   >
                     {({ input, meta }) => (

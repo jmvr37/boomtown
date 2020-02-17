@@ -3,8 +3,8 @@ import { ALL_TAGS_QUERY } from "../apollo/queries";
 
 export const ItemPreviewContext = createContext();
 const InitialState = {
-  title: "Name your Item",
-  description: "Describe your item",
+  titleItem: "Name your Item",
+  describe: "Describe your item",
   tags: [],
   imgUrl: "please select an image" && "https://via.placeholder.com/300",
   itemowner: {},

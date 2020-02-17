@@ -17,13 +17,10 @@ import { TextField } from "@material-ui/core/";
 
 const ItemCard = ({
   classes,
-  state,
+
   item,
-  tags,
-  viewer,
-  timeNow,
-  titleItem,
-  describe
+
+  timeNow
 }) => {
   timeNow = hour => {
     return new Date(hour).toLocaleTimeString("en-US", {
@@ -58,11 +55,11 @@ const ItemCard = ({
         </CardActionArea>
         <CardContent className={classes.text}>
           <Typography gutterBottom variant="h5" component="h2">
-            {item.titleItem}
+            {item.title}
           </Typography>
 
           <Typography variant="body2" color="textSecondary">
-            {item.describe}
+            {item.description}
           </Typography>
 
           <Typography

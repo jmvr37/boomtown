@@ -9,13 +9,19 @@ export class ShareItemPreview extends Component {
     return (
       <ItemPreviewContext.Consumer>
         {({ state }) => {
+          const item = {
+            title: state.item.titleItem,
+            description: state.item.describe,
+            tags: state.item.tags,
+            imageUrl: state.item.imgUrl
+          };
           return (
             <div>
               <ItemCard
-                item={state.item}
-                titleItem={state.item.title}
-                describe={state.item.description}
-                imageUrl={state.item.imgUrl}
+                item={item}
+                // titleItem={state.item.title}
+                // describe={state.item.description}
+                // imageUrl={state.item.imgUrl}
               />
             </div>
           );

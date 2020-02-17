@@ -36,11 +36,7 @@ class ProfileCard extends React.Component {
                         email={viewer.email + "/d=retro"}
                         style={classes.gravatar}
                       />
-                      <Typography
-                        variant="headline"
-                        // component="h3"
-                        style={classes.userName}
-                      >
+                      <Typography variant="headline" style={classes.userName}>
                         {viewer.fullname}
                       </Typography>
                     </div>
