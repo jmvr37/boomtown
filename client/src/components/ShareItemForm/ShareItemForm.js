@@ -55,9 +55,8 @@ class ShareForm extends Component {
   };
 
   render() {
-    const { classes, tags } = this.props;
+    const { classes, tags, itemMutation } = this.props;
     console.log("tags", tags);
-    const itemMutation = this.props.itemMutation;
 
     // if (this.state.redirect) {
     //   return <Redirect to="/items" />;
@@ -67,29 +66,26 @@ class ShareForm extends Component {
       <ItemPreviewContext.Consumer>
         {({ state, updatePreview, resetPreview }) => (
           <Form
-            onSubmit={
-              (resetPreview,
-              values => {
-                this.tagCheck(this.state.selectTags);
-                const addMutation = {
-                  variables: {
-                    item: {
-                      title: values.title,
-                      description: values.description,
-                      tags: this.tagCheck(this.state.selectTags),
-                      imageUrl: values.imageUrl
-                    }
+            onSubmit={values => {
+              this.tagCheck(this.state.selectTags);
+              const addMutation = {
+                variables: {
+                  item: {
+                    title: values.titleItem, // old code values.title
+                    description: values.describe, // old code line values.description
+                    tags: this.tagCheck(this.state.selectTags),
+                    imageUrl: values.imageUrl
                   }
-                };
-                itemMutation(addMutation).then(() => {
-                  resetPreview();
-                  this.setState({
-                    redirect: true
-                  });
+                }
+              };
+              itemMutation(addMutation).then(() => {
+                resetPreview();
+                this.setState({
+                  redirect: true
                 });
-                console.log(values);
-              })
-            }
+              });
+              console.log("------>", values);
+            }}
             validate={updatePreview} // CHANGE THIS
             render={({
               handleSubmit,

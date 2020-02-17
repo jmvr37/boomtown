@@ -59,7 +59,7 @@ class AccountForm extends Component {
             {!this.state.formToggle && (
               <FormControl fullWidth className={classes.formControl}>
                 <InputLabel htmlFor="fullname">Username</InputLabel>
-                <Field name="fullmane" component="input" type="text">
+                <Field name="fullname" component="input" type="text">
                   {({ input, meta }) => (
                     <Input
                       id="fullname"

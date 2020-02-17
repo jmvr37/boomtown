@@ -68,7 +68,7 @@ module.exports = postgres => {
     },
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
-        text: `SELECT * FROM items WHERE "borrower" = $1`,
+        text: `SELECT * FROM items WHERE "borrowedId" = $1`,
         values: [id]
       });
       return items.rows;
@@ -79,7 +79,7 @@ module.exports = postgres => {
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: `SELECT * FROM tags INNER JOIN itemstag ON itemtags.tagId = tags.id WHERE itemstags.itemId = $1`,
+        text: `SELECT * FROM tags INNER JOIN itemtags ON itemtags."tagId" = tags.id WHERE itemtags."itemId" = $1`,
         values: [id]
       };
 
