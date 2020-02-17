@@ -74,7 +74,7 @@ class ShareForm extends Component {
                     title: values.titleItem, // old code values.title
                     description: values.describe, // old code line values.description
                     tags: this.tagCheck(this.state.selectTags),
-                    imageUrl: values.imageUrl
+                    imageUrl: values.imgUrl
                   }
                 }
               };

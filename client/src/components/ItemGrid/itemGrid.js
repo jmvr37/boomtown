@@ -14,13 +14,15 @@ import ItemCard from "../Card/ItemCard";
 const itemGrid = ({ classes, items }) => {
   if (!items) return <p>No items</p>;
   return (
-    <Grid>
-      {items.map(item => (
-        <Grid key={item.id}>
-          <ItemCard item={item} />
-        </Grid>
-      ))}
-    </Grid>
+    <div className={classes.gridcontainer}>
+      <Grid container className={classes.gridBox}>
+        {items.map(item => (
+          <Grid key={item.id} item xs={12} className={classes.grid}>
+            <ItemCard item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </div>
   );
 };
 

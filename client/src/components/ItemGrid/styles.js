@@ -7,6 +7,13 @@ const styles = theme => ({
     paddingBottom: "30px",
     height: "100%",
     width: "100%"
+  },
+  gridBox: {
+    display: "flex"
+  },
+  grid: {
+    flexBasis: "33%",
+    marginTop: "20px"
   }
 });
 export default styles;

@@ -15,11 +15,16 @@ import { ViewerContext } from "../../context/ViewerProvider.js";
 import Gravatar from "react-gravatar";
 import { TextField } from "@material-ui/core/";
 
-const ItemCard = ({ classes, state, item, tags, viewer, timeNow }) => {
-  console.log("state ---->", state);
-  console.log("tags ---->", tags);
-  console.log("item --->", item);
-
+const ItemCard = ({
+  classes,
+  state,
+  item,
+  tags,
+  viewer,
+  timeNow,
+  titleItem,
+  describe
+}) => {
   timeNow = hour => {
     return new Date(hour).toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -28,14 +33,15 @@ const ItemCard = ({ classes, state, item, tags, viewer, timeNow }) => {
   };
 
   return (
-    <ViewerContext.Consumer>
-      {({ viewer }) => (
-        <div className={classes.card}>
-          <Card>
-            <CardActionArea>
-              <CardMedia className={classes.media} image={item.imgUrl}>
-                {/* {item.imgUrl} */}
-              </CardMedia>
+    <div className={classes.card}>
+      <Card>
+        <CardActionArea>
+          <CardMedia className={classes.media} image={item.imgUrl}>
+            {/* {item.imgUrl} */}
+          </CardMedia>
+
+          <ViewerContext.Consumer>
+            {({ viewer }) => (
               <div className={classes.gravatarContainer}>
                 <Gravatar
                   email={viewer.email + "/d=retro"}
@@ -44,44 +50,43 @@ const ItemCard = ({ classes, state, item, tags, viewer, timeNow }) => {
                 <Typography variant="headline" className={classes.userName}>
                   {viewer.fullname}
                 </Typography>
+
                 <Typography>{timeNow} </Typography>
               </div>
-            </CardActionArea>
-            <CardContent className={classes.text}>
-              <Typography gutterBottom variant="h5" component="h2">
-                {item.titleItem}
-              </Typography>
+            )}
+          </ViewerContext.Consumer>
+        </CardActionArea>
+        <CardContent className={classes.text}>
+          <Typography gutterBottom variant="h5" component="h2">
+            {item.titleItem}
+          </Typography>
 
-              <Typography variant="body2" color="textSecondary">
-                {item.describe}
-              </Typography>
-              {/* {tags &&
-            tags.map(tag => { */}
-              {/* return ( */}
-              <Typography
-                gutterBottom
-                component="span"
-                className={classes.spanTags}
-                variant="body2"
-              >
-                {item.tags
-                  .map(tag => {
-                    return tag.title;
-                  })
-                  .join(",")}
-              </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {item.describe}
+          </Typography>
 
-              <Typography />
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="primary">
-                BORROW
-              </Button>
-            </CardActions>
-          </Card>
-        </div>
-      )}
-    </ViewerContext.Consumer>
+          <Typography
+            gutterBottom
+            component="span"
+            className={classes.spanTags}
+            variant="body2"
+          >
+            {item.tags
+              .map(tag => {
+                return tag.title;
+              })
+              .join(",")}
+          </Typography>
+
+          <Typography />
+        </CardContent>
+        <CardActions>
+          <Button size="small" color="primary">
+            BORROW
+          </Button>
+        </CardActions>
+      </Card>
+    </div>
   );
 };
 
