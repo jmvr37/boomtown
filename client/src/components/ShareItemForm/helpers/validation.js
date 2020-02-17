@@ -9,6 +9,9 @@ export default function validate(values) {
   if (!values.tags) {
     errors.tags = "Required";
   }
+  if (!values.imageurl) {
+    errors.imageurl = "Required";
+  }
   /**
    * @TODO: Write the validation rules for the share form.
    *

@@ -19,6 +19,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
 import { graphql, compose } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
+import validate from "./helpers/validation";
 
 class ShareForm extends Component {
   constructor(props) {

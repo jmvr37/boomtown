@@ -14,7 +14,6 @@ import {
 } from "../../apollo/queries";
 import { graphql, compose } from "react-apollo";
 import validate from "./helpers/validation";
-// import PropTypes from "prop-types";
 import styles from "./styles";
 import { TextField } from "@material-ui/core/";
 
@@ -146,8 +145,8 @@ class AccountForm extends Component {
                     onClick={() => {
                       form.reset();
                       this.setState({
-                        error: null,
-                        formToggle: !this.state.formToggle
+                        formToggle: !this.state.formToggle,
+                        error: null
                       });
                     }}
                   >
@@ -159,12 +158,7 @@ class AccountForm extends Component {
               </Grid>
             </FormControl>
             <Typography className={classes.errorMessage}>
-              {(this.state.error &&
-                this.state.formToggle &&
-                this.state.error.graphQLErrors.message) ||
-                (this.state.error &&
-                  !this.state.formToggle &&
-                  this.state.error.graphQLErrors.message)}
+              {this.state.error && this.state.formToggle}
             </Typography>
           </form>
         )}
