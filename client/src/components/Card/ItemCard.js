@@ -14,6 +14,7 @@ import styles from "./styles";
 import { ViewerContext } from "../../context/ViewerProvider.js";
 import Gravatar from "react-gravatar";
 import { TextField } from "@material-ui/core/";
+
 const ItemCard = ({ classes, state, item, tags, viewer, timeNow }) => {
   console.log("state ---->", state);
   console.log("tags ---->", tags);
@@ -33,18 +34,14 @@ const ItemCard = ({ classes, state, item, tags, viewer, timeNow }) => {
           <Card>
             <CardActionArea>
               <CardMedia className={classes.media} image={item.imgUrl}>
-                {item.imgUrl}
+                {/* {item.imgUrl} */}
               </CardMedia>
               <div className={classes.gravatarContainer}>
                 <Gravatar
                   email={viewer.email + "/d=retro"}
                   className={classes.gravatar}
                 />
-                <Typography
-                  variant="headline"
-                  // component="h3"
-                  className={classes.userName}
-                >
+                <Typography variant="headline" className={classes.userName}>
                   {viewer.fullname}
                 </Typography>
                 <Typography>{timeNow} </Typography>

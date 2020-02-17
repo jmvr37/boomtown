@@ -21,6 +21,17 @@ import { graphql, compose } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
 import validate from "./helpers/validation";
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+};
+
 class ShareForm extends Component {
   constructor(props) {
     super(props);
@@ -47,9 +58,14 @@ class ShareForm extends Component {
     const { classes, tags } = this.props;
     console.log("tags", tags);
     const itemMutation = this.props.itemMutation;
+
+    // if (this.state.redirect) {
+    //   return <Redirect to="/items" />;
+    // }
+
     return (
       <ItemPreviewContext.Consumer>
-        {({ state, updatePreview, resetPreview, selectTags }) => (
+        {({ state, updatePreview, resetPreview }) => (
           <Form
             onSubmit={
               (resetPreview,
@@ -155,7 +171,7 @@ class ShareForm extends Component {
                     component="Input"
                     type="text box"
                     placeholder={state.item.describe}
-                    validate={validate}
+                    // validate={validate}
                   >
                     {({ input, meta }) => (
                       <Input
@@ -189,7 +205,7 @@ class ShareForm extends Component {
                     }}
                     input={<Input />}
                     renderValue={selected => selected.join(", ")}
-                    // MenuProps={MenuProps}
+                    MenuProps={MenuProps}
                   >
                     {tags &&
                       tags.map(tag => (

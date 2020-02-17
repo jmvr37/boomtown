@@ -21,12 +21,6 @@ const ItemFields = gql`
       email
       bio
     }
-    borrowed {
-      id
-      fullname
-      email
-      bio
-    }
   }
 `;
 
