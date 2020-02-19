@@ -43,7 +43,7 @@ Commands must be run from the `client` directory using `npm start run`.
 
 <img width="1072" alt="Screen Shot 2020-02-18 at 4 36 42 PM" src="https://user-images.githubusercontent.com/49181465/74790595-e29b5e00-526c-11ea-9c99-833341cbd8ef.png">
 
-`Item Page`
+`Items Page`
 
 <img width="1114" alt="Screen Shot 2020-02-18 at 4 39 45 PM" src="https://user-images.githubusercontent.com/49181465/74790718-50e02080-526d-11ea-8ec1-e56cc1bcfc76.png">
 
