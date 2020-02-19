@@ -16,6 +16,7 @@ class ProfileCard extends React.Component {
   render() {
     const { viewer } = this.context;
     const classes = styles();
+
     return (
       <div>
         <Query query={ALL_USER_ITEMS_QUERY} variables={{ id: viewer.id }}>
@@ -25,8 +26,8 @@ class ProfileCard extends React.Component {
             if (error) return <p>{`Error! ${error.message}`}</p>;
 
             let user = data;
-            console.log("user data - profile");
-            console.log(user);
+
+            console.log("user data from profile card", user);
             return (
               <div>
                 <Card style={classes.card}>
@@ -41,7 +42,7 @@ class ProfileCard extends React.Component {
                       </Typography>
                     </div>
                     <Typography component="p">
-                      {user.length} Items shared 0 Items borrowed
+                      {this.props.itemCounter} Items shared 0 Items borrowed
                       <br />
                       {viewer.bio ? viewer.bio : '"No bio provided."'}
                     </Typography>
@@ -55,7 +56,7 @@ class ProfileCard extends React.Component {
                     </Typography>
                   </CardContent>
                 </Card>
-                <ItemGrid items={user.items} />
+                {/* <ItemGrid items={user.ALL_USER_ITEMS_QUERY} /> */}
               </div>
             );
           }}
