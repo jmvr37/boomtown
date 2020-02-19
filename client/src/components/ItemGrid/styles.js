@@ -6,7 +6,8 @@ const styles = theme => ({
     paddingTop: "30px",
     paddingBottom: "30px",
     height: "100%",
-    width: "100%"
+    width: "100%",
+    backgroundColor: "#212121"
   },
   gridBox: {
     display: "flex"
