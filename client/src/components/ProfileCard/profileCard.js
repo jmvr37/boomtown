@@ -4,12 +4,11 @@ import styles from "./styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
 import { ViewerContext } from "../../context/ViewerProvider";
 import { Query } from "react-apollo";
 import PropTypes from "prop-types";
 import { ALL_USER_ITEMS_QUERY } from "../../apollo/queries";
-import Items from "../../pages/Items";
+import ItemGrid from "../../components/ItemGrid";
 import Gravatar from "react-gravatar";
 
 class ProfileCard extends React.Component {
@@ -26,7 +25,8 @@ class ProfileCard extends React.Component {
             if (error) return <p>{`Error! ${error.message}`}</p>;
 
             let user = data;
-
+            console.log("user data - profile");
+            console.log(user);
             return (
               <div>
                 <Card style={classes.card}>
@@ -55,7 +55,7 @@ class ProfileCard extends React.Component {
                     </Typography>
                   </CardContent>
                 </Card>
-                <Items items={user} />
+                <ItemGrid items={user.items} />
               </div>
             );
           }}

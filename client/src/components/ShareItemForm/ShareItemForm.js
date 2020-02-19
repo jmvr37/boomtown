@@ -2,24 +2,19 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
-import { Redirect } from "react-router";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import styles from "./styles";
 import { TextField } from "@material-ui/core/";
 import { Form, Field } from "react-final-form";
-import ItemPreviewProvider, {
-  ItemPreviewContext
-} from "../../context/ItemPreviewProvider";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
 import { graphql, compose } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
-import validate from "./helpers/validation";
+//import validate from "./helpers/validation";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -99,39 +94,25 @@ class ShareForm extends Component {
                 <h1 className={classes.title}>Share. Borrow. Prosper</h1>
 
                 <FormControl fullWidth>
-                  <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="contained-button-file"
-                    multiple
-                    type="file"
-                  />
-                  {/* <label htmlFor="contained-button-file">
-                    <Button
-                      className={classes.button_large}
-                      variant="contained"
-                      color="primary"
-                      component="span"
-                    >
-                      Select an Image
-                    </Button>
-                  </label> */}
                   <Field
-                    id="imgUrl"
-                    render={({ input, meta }) => (
+                    name="imgUrl"
+                    component="input"
+                    type="text"
+                    validate={validate}
+                  >
+                    {({ input, meta }) => (
                       <TextField
-                        //component="file"
-                        placeholder="SELECT AN IMAGE "
-                        // validate={validate}
-                        className={classes.button_large}
-                        color="primary"
-                        value={input.value}
-                        accept="image/*"
+                        id="imgUrl"
                         type="text"
+                        label="select image"
+                        inputProps={{
+                          ...input,
+                          autoComplete: "off"
+                        }}
+                        value={input.value}
                       />
                     )}
-                  />
-                  Upload an image
+                  </Field>
                 </FormControl>
 
                 <FormControl fullWidth className={classes.textField}>

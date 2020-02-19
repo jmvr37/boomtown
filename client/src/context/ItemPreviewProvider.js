@@ -1,12 +1,10 @@
 import React, { createContext, Component } from "react";
-import { ALL_TAGS_QUERY } from "../apollo/queries";
-
 export const ItemPreviewContext = createContext();
 const InitialState = {
   titleItem: "Name your Item",
   describe: "Describe your item",
   tags: [],
-  imgUrl: "please select an image" && "https://via.placeholder.com/300",
+  imgUrl: "https://via.placeholder.com/300",
   itemowner: {},
   create: new Date()
 };

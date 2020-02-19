@@ -6,8 +6,6 @@ const queryResolvers = app => ({
   },
   async user(parent, { id }, { pgResource }, info) {
     try {
-      console.log("here");
-      console.log(pgResource);
       const user = await pgResource.getUserById(id);
       return user;
     } catch (e) {
@@ -16,8 +14,6 @@ const queryResolvers = app => ({
   },
   async items(parent, { filter }, { pgResource }, info) {
     try {
-      console.log("here items");
-      console.log(pgResource);
       const items = await pgResource.getItems(filter);
       return items;
     } catch (e) {
@@ -27,7 +23,6 @@ const queryResolvers = app => ({
 
   async tags(parent, args, { pgResource }, info) {
     try {
-      console.log(pgResource);
       const tags = await pgResource.getTags();
       return tags;
     } catch (e) {

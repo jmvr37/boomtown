@@ -1,17 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import Paper from "@material-ui/core/Paper";
 import styles from "./styles";
-import { makeStyles } from "@material-ui/core/styles";
-import ShareItemPreview from "../ShareItemPreview/ShareItemPreview";
 import { withStyles } from "@material-ui/core/styles";
 import ItemCard from "../Card/ItemCard";
 
-const itemGrid = ({ classes, items }) => {
+const ItemGrid = ({ classes, items }) => {
   if (!items) return <p>No items</p>;
   return (
     <div className={classes.gridcontainer}>
@@ -26,4 +19,4 @@ const itemGrid = ({ classes, items }) => {
   );
 };
 
-export default withStyles(styles)(itemGrid);
+export default withStyles(styles)(ItemGrid);

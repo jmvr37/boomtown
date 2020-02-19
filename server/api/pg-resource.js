@@ -45,10 +45,8 @@ module.exports = postgres => {
         text: "SELECT * FROM users WHERE id = $1",
         values: id ? [id] : []
       };
-      console.log("here2");
+
       const user = await postgres.query(findUserQuery);
-      console.log("here3");
-      console.log(user);
       return user.rows[0];
     },
     async getItems(idToOmit) {
@@ -88,21 +86,19 @@ module.exports = postgres => {
     },
 
     async saveNewItem({ item, user }) {
-      console.log("boom");
       return new Promise((resolve, reject) => {
         postgres.connect((err, client, done) => {
           try {
             client.query("BEGIN", async err => {
-              const { title, description, tags } = item;
+              const { title, description, tags, imageUrl } = item;
               const itemQuery = {
-                text: `INSERT INTO items (title, description, "ownerId") VALUES ($1, $2, $3) RETURNING *`,
-                values: [title, description, user.id]
+                text: `INSERT INTO items (title, description, "ownerId", "imageUrl") VALUES ($1, $2, $3, $4) RETURNING *`,
+                values: [title, description, user.id, imageUrl]
               };
 
               const newItem = await client.query(itemQuery);
 
               const newItemId = newItem.rows[0].id;
-              console.log("hi", newItemId);
 
               const tagsQuery = {
                 text: `INSERT INTO itemtags ("tagId","itemId" ) VALUES ${tagsQueryString(
@@ -112,9 +108,6 @@ module.exports = postgres => {
                 )}`,
                 values: tags.map(tag => tag.id)
               };
-
-              console.log(tags.map(tag => tag.id));
-              console.log(tags);
 
               await client.query(tagsQuery);
 

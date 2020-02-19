@@ -47,6 +47,7 @@ module.exports = gql`
     title: String!
     description: String!
     tags: [AssignedTag]
+    imageUrl: String
   }
 
   type Query {

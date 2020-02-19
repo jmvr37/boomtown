@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles, mergeClasses } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 import ItemCard from "../Card/ItemCard";
@@ -13,7 +13,7 @@ export class ShareItemPreview extends Component {
             title: state.item.titleItem,
             description: state.item.describe,
             tags: state.item.tags,
-            imageUrl: state.item.imgUrl
+            itemImg: state.item.imgUrl
           };
           return (
             <div>

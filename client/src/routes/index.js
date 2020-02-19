@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Redirect, Route, Switch, NavBar } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import Home from "../pages/Home/Home.js";
 import Items from "../pages/Items";
 import Profile from "../pages/Profile";

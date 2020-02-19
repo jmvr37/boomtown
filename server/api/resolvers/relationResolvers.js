@@ -4,16 +4,21 @@ const relationResolvers = {
   User: {
     async items(parent, args, { pgResource }, info) {
       try {
-        console.log(pgResource);
-        const itemsLent = await pgResource.getItemsForUser(parent.id);
-        return itemsLent;
+        const userItems = await pgResource.getItemsForUser(parent.id);
+        console.log("user items relation resolver");
+
+        let newUserItems = userItems.map(item => {
+          item.imageurl = item.imageUrl;
+          return item;
+        });
+        console.log(newUserItems);
+        return newUserItems;
       } catch (e) {
         throw new ApolloError(e);
       }
     },
     async borrowed(parent, args, { pgResource }, info) {
       try {
-        console.log(pgResource);
         const borrowed = await pgResource.getBorrowedItemsForUser(parent.id);
         return borrowed;
       } catch (e) {
@@ -25,7 +30,6 @@ const relationResolvers = {
   Item: {
     async itemowner(parent, args, { pgResource }, info) {
       try {
-        console.log(pgResource);
         const itemOwner = await pgResource.getUserById(parent.ownerId);
 
         return itemOwner;
@@ -36,7 +40,6 @@ const relationResolvers = {
 
     async tags(parent, args, { pgResource }, info) {
       try {
-        console.log(pgResource);
         const itemTag = await pgResource.getTagsForItem(parent.id);
         return itemTag;
       } catch (e) {
@@ -46,7 +49,6 @@ const relationResolvers = {
 
     async borrower(parent, args, { pgResource }, info) {
       try {
-        console.log(pgResource);
         const itemBorrowed = await pgResource.getUserById(parent.id);
         return itemBorrowed;
       } catch (e) {

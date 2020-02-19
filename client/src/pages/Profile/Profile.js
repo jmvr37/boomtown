@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import ProfileCard from "../../components/ProfileCard";
 import Typography from "@material-ui/core/Typography";
-import ItemGrid from "../../components/ItemGrid/itemGrid";
+import ItemGrid from "../../components/ItemGrid";
 
 const Profile = ({ props, classes, viewer }) => {
   console.log("profile data------>", props);

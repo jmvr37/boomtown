@@ -1,19 +1,15 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import styles from "./styles";
 import { ViewerContext } from "../../context/ViewerProvider.js";
 import Gravatar from "react-gravatar";
-import { TextField } from "@material-ui/core/";
 
 const ItemCard = ({
   classes,
@@ -33,9 +29,10 @@ const ItemCard = ({
     <div className={classes.card}>
       <Card>
         <CardActionArea>
-          <CardMedia className={classes.media} image={item.imgUrl}>
-            {/* {item.imgUrl} */}
-          </CardMedia>
+          <CardMedia
+            className={classes.media}
+            image={item.itemImg || "https://via.placeholder.com/300"}
+          />
 
           <ViewerContext.Consumer>
             {({ viewer }) => (

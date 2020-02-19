@@ -15,9 +15,8 @@ import {
 import { graphql, compose } from "react-apollo";
 import validate from "./helpers/validation";
 import styles from "./styles";
-import { TextField } from "@material-ui/core/";
 
-const required = value => (value ? undefined : "Required");
+// const required = value => (value ? undefined : "Required");
 
 // const onFormSubmitFunc = values => {
 //   console.log(values);

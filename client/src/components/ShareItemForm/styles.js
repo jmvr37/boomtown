@@ -1,5 +1,3 @@
-import { TextareaAutosize } from "@material-ui/core";
-
 // const input_large_field = "70%";
 const styles = theme => ({
   container: {

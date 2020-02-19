@@ -1,26 +1,18 @@
-import React, { component } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import Avatar from "./avatar";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
-import LongMenu from "../Menu/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 
 const NavBar = ({ classes }) => {
-  const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const ITEM_HEIGHT = 48;
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleClose = () => {
     setAnchorEl(null);
